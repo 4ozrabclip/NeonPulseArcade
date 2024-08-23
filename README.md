@@ -1,4 +1,4 @@
-![Banner](Images\NeonPulseArcadeBanner.png?raw=true)
+![Banner](/Images/NeonPulseArcadeBanner.png)
 
 # Neon Pulse: Arcade
 
