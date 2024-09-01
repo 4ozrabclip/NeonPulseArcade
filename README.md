@@ -2,7 +2,8 @@
 
 # Neon Pulse: Arcade
 
-Dungeon crawler set in the underground rave scene of cyberpunk Oceania.  Powered by C++ and olc:PixelGameEngine.
+Dungeon crawler set in the underground rave scene of cyberpunk Oceania.  
+Powered by C++ and olc:PixelGameEngine.
 
 ### Featuring character cameos from Christchurch, NZ rappers:
 - Apathxtic: \
@@ -16,7 +17,8 @@ https://soundcloud.com/rabcliparchive
 https://soundcloud.com/4206669
 
 ### Deep soundtrack from NZ (and global) producers:
-Emotionaly captivating soundtrack full of breaks, garage, trap/rap, dubs, wubs and ambient heart tugs.  You name it
+Emotionaly captivating soundtrack full of breaks, garage, trap/rap, dubs, wubs and ambient heart tugs.  
+You name it x
 - DJ Cannibal (Christchurch,NZ)\
 https://soundcloud.com/exileanti
 - Charlieso/4ozBeats (Christchurch,NZ)\
@@ -27,3 +29,7 @@ https://soundcloud.com/purpleman7 \
 https://soundcloud.com/george-walton-83920341
 - Caqess (Germany)\
 https://soundcloud.com/caqessstheillest
+
+## Contact
+
+- **Twitter:** [@buymyfiddis](https://twitter.com/buymyfiddis)
