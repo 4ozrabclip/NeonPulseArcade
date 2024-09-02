@@ -1,12 +1,24 @@
 #pragma once
 #include "Character.h"
-class Map;
+#include "AnimatedSprite.h"
+#include <memory>
+
 class Player : public Character
 {
 public:
-	Player(Map* map);
-	void Update();
+	Player(int x, int y);
+	virtual ~Player();
+
+	virtual void Draw(class World* World, float fElapsedTime) const override;
+
+	virtual void Update(float fElapsedTime) override;
+	virtual void Move() override;
+
+	void SetXY(float x, float y);
+
+protected:
+	float fPlayer_ElapsedTime;
 private:
-	Map* map;
+	Player(const Player& other);
 };
 
