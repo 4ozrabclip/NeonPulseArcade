@@ -6,12 +6,12 @@ AnimatedSprite::AnimatedSprite(std::shared_ptr<olc::Sprite> sprite, EAnimationTy
 {
 }
 
+
 void AnimatedSprite::DrawAt(float fElapsedTime, olc::vi2d InScreenPosition)
 {
     ElapsedTime += fElapsedTime;
 
     float frameDuration = AnimSequence.AnimationDuration / static_cast<float>(AnimSequence.NumberOfFrames);
-
     float timeInLoop = std::fmod(ElapsedTime, AnimSequence.AnimationDuration);
 
     int currentFrame = 0;
@@ -21,7 +21,6 @@ void AnimatedSprite::DrawAt(float fElapsedTime, olc::vi2d InScreenPosition)
     case EAnimationType::STILL:
         currentFrame = 0;
         break;
-
     case EAnimationType::LOOP_ONCE:
         if (ElapsedTime >= AnimSequence.AnimationDuration)
         {
@@ -32,18 +31,23 @@ void AnimatedSprite::DrawAt(float fElapsedTime, olc::vi2d InScreenPosition)
             currentFrame = static_cast<int>(timeInLoop / frameDuration);
         }
         break;
-
     case EAnimationType::LOOP_FOREVER:
         currentFrame = static_cast<int>(timeInLoop / frameDuration);
         break;
     }
+
     olc::vi2d sourcePos = AnimSequence.WhichSprite;
-    sourcePos.x += currentFrame * (AnimSequence.SpriteSize.x + 1); // +1 for the 1 pixel gap between tiles
+    sourcePos.x += currentFrame * (AnimSequence.SpriteSize.x + 1); // +1 for gap
 
     World* pWorld = World::Instance;
-
     if (pWorld)
     {
         pWorld->DrawPartialSprite(InScreenPosition, Tileset.get(), sourcePos, AnimSequence.SpriteSize);
     }
+}
+
+void AnimatedSprite::SetAnimationType(EAnimationType animType)
+{
+    AnimationType = animType;
+    ElapsedTime = 0.0f; // Reset animation timer
 }

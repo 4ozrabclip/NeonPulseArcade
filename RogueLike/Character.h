@@ -12,7 +12,7 @@ public:
 
 	virtual void Draw(class World* World, float fElapsedTime) const;
 	void SetAnimatedSprite(std::shared_ptr<AnimatedSprite> AnimatedSprite);
-	virtual void Move();
+	virtual void Move(float fElapsedTime);
 protected:
 	std::shared_ptr<AnimatedSprite> AnimatedSpritePtr;
 	std::shared_ptr<olc::Sprite> Tileset;

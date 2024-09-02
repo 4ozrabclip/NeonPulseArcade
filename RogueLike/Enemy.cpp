@@ -13,12 +13,13 @@ Enemy::Enemy(int x, int y)
 
     Tileset = World::Instance->Tileset;
     FAnimSequence animSequence;
-    animSequence.WhichSprite = Actor::SpritePosition(RABCLIP);
+    EAnimationType animType = EAnimationType::LOOP_FOREVER;
+    animSequence.WhichSprite = Actor::SpritePosition(ALIEN);
     animSequence.NumberOfFrames = 2;
     animSequence.SpriteSize = World::Instance->TileSize;
     animSequence.AnimationDuration = 1.0f;
 
-    this->SetAnimatedSprite(std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, animSequence));
+    this->SetAnimatedSprite(std::make_shared<AnimatedSprite>(Tileset, animType, animSequence));
 
     std::cout << "Constructor called on object at: " << this << " (Enemy)." << std::endl;
 
@@ -59,7 +60,7 @@ void Enemy::Draw(World* World, float fElapsedTime) const
     }
 }
 
-void Enemy::Move()
+void Enemy::Move(float fElapsedTime)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -92,7 +93,7 @@ void Enemy::Update(float fElapsedTime)
 
     fEnemy_ElapsedTime += fElapsedTime;
     if (fEnemy_ElapsedTime >= 0.1) {
-        Move();
+        Move(fElapsedTime);
         fEnemy_ElapsedTime = 0;
     }
 

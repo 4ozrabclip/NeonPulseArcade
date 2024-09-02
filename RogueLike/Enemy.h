@@ -13,7 +13,7 @@ public:
 	virtual void Draw(class World* World, float fElapsedTime) const override;
 
 	virtual void Update(float fElapsedTime) override;
-	virtual void Move() override;
+	virtual void Move(float fElapsedTime) override;
 
 
 

@@ -18,10 +18,9 @@ public:
 
 	std::shared_ptr<olc::Sprite> Tileset;
 	const olc::vi2d TileSize = { 12, 12 };
+
 private:
 	static constexpr int ArraySize = 3;
-
 	Enemy** EnemyPtrs = new Enemy * [ArraySize];
-	//Room* RoomPtr;
 	Player* PlayerPtr;
 };

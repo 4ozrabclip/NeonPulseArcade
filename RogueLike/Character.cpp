@@ -40,7 +40,7 @@ void Character::SetAnimatedSprite(std::shared_ptr<AnimatedSprite> AnimatedSprite
     AnimatedSpritePtr = AnimatedSprite;
 }
 
-void Character::Move()
+void Character::Move(float fElapsedTime)
 {
 }
 

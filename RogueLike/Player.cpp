@@ -7,16 +7,17 @@ Player::Player(int x, int y)
 {
     this->X = x;
     this->Y = y;
-    AnimatedSpritePtr = nullptr;
+    
 
-    Tileset = std::make_shared<olc::Sprite>("tileset.png");
+    Tileset = World::Instance->Tileset;
     FAnimSequence animSequence;
-    animSequence.WhichSprite = olc::vi2d(469, 80);
+    EAnimationType AnimType = EAnimationType::STILL;
+    animSequence.WhichSprite = Actor::SpritePosition(RABCLIP);
     animSequence.NumberOfFrames = 4;
-    animSequence.SpriteSize = olc::vi2d(12, 12);
+    animSequence.SpriteSize = World::Instance->TileSize;
     animSequence.AnimationDuration = 1.0f;
 
-    this->SetAnimatedSprite(std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, animSequence));
+    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, AnimType, animSequence);
 }
 
 Player::~Player()
@@ -25,30 +26,60 @@ Player::~Player()
 
 void Player::Draw(World* World, float fElapsedTime) const
 {
-    olc::vi2d position(Actor::X, Actor::Y);
+    olc::vi2d position(X, Y);
 
-    if (AnimatedSpritePtr.get())
+    if (AnimatedSpritePtr)
     {
-        AnimatedSpritePtr.get()->DrawAt(fElapsedTime, position);
+        AnimatedSpritePtr->DrawAt(fElapsedTime, position);
     }
     else
     {
-        // If there's no AnimatedSprite, draw a placeholder rectangle
-        olc::Pixel color(255, 0, 0, 255);
-        olc::vi2d size(8, 8);
-        World->DrawRect(position, size, color);
+        World->DrawRect(position, olc::vi2d(8, 8), olc::Pixel(255, 0, 0));
     }
 }
 
 void Player::Update(float fElapsedTime)
 {
-    Move();
+    Move(fElapsedTime);
+}
+
+void Player::Move(float fElapsedTime)
+{
+    float x = 0, y = 0;
+
+    if (World::Instance->GetKey(olc::Key::LEFT).bHeld)
+    {
+        x -= 100 * fElapsedTime;
+        AnimatedSpritePtr->SetAnimationType(EAnimationType::LOOP_FOREVER);
+    }
+    else if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
+    {
+        x += 100 * fElapsedTime;
+        AnimatedSpritePtr->SetAnimationType(EAnimationType::LOOP_FOREVER);
+    }
+    else if (World::Instance->GetKey(olc::Key::UP).bHeld)
+    {
+        y -= 100 * fElapsedTime;
+        AnimatedSpritePtr->SetAnimationType(EAnimationType::LOOP_FOREVER);
+    }
+    else if (World::Instance->GetKey(olc::Key::DOWN).bHeld)
+    {
+        y += 100 * fElapsedTime;
+        AnimatedSpritePtr->SetAnimationType(EAnimationType::LOOP_FOREVER);
+    }
+    else {
+        AnimatedSpritePtr->SetAnimationType(EAnimationType::STILL);
+    }
+
+    SetXY(x, y);
 
 }
 
-void Player::Move()
+void Player::SetXY(float InX, float InY)
 {
-    // check collisions
+    X += InX;
+    Y += InY;
+
     if (X >= 256 - 12)   //max x boundry
     {
         X = 256 - 12;
@@ -65,10 +96,4 @@ void Player::Move()
     {
         Y = 0;
     }
-}
-
-void Player::SetXY(float x, float y)
-{
-    X += x;
-    Y += y;
 }
