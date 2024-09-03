@@ -2,8 +2,10 @@
 #include "World.h"
 #include <iostream>
 #include <random>
+#include <cmath>
+#include "Player.h"
 
-Enemy::Enemy(int x, int y)
+Enemy::Enemy(int x, int y, Player* InPlayerPtr)
 {
     this->Pos.x = x;
     this->Pos.y = y;
@@ -14,28 +16,45 @@ Enemy::Enemy(int x, int y)
     animSequence.SpriteSize = World::Instance->TileSize;
     animSequence.AnimationDuration = 1.0f;
 
+    PlayerPtr = InPlayerPtr;
+
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, animSequence);
 }
 Enemy::~Enemy()
 {
 }
 
-void Enemy::MakeNoise() const
-{
-    std::cout << "Enemy [" << this << "] makes generic noise." << std::endl;
-}
-
 void Enemy::Move(float fElapsedTime)
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distr(-1, 1);
-    Pos.x += distr(gen);
-    Pos.y += distr(gen);
 
-    if (Pos.x >= 256 - 12)   
+
+    int TargetX = PlayerPtr->GetXY().x;
+    int TargetY = PlayerPtr->GetXY().y;
+
+    float DToTargetX = TargetX - Pos.x;
+    float DToTargetY = TargetY - Pos.y;
+
+    float Distance = std::sqrt(DToTargetX * DToTargetX + DToTargetY * DToTargetY);
+
+    if (Distance != 0)
     {
-        Pos.x = 256 - 12;
+        DToTargetX /= Distance;
+        DToTargetY /= Distance;
+    }
+    else {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> distr(-1, 1);
+        Pos.x += distr(gen);
+        Pos.y += distr(gen);
+    }
+    float MoveSpeed = 1000.0f;
+    Pos.x += DToTargetX *10* fElapsedTime;
+    Pos.y += DToTargetY *10* fElapsedTime;
+
+    if (Pos.x >= 240 - 12)   
+    {
+        Pos.x = 240 - 12;
     }
     if (Pos.x <= 0)
     {
@@ -49,21 +68,17 @@ void Enemy::Move(float fElapsedTime)
     {
         Pos.y = 0;
     }
-    }
+}
 
 void Enemy::Update(float fElapsedTime)
 {
     olc::vi2d position(Pos.x, Pos.y);
 
     fEnemy_ElapsedTime += fElapsedTime;
-    if (fEnemy_ElapsedTime >= 0.1) {
-        Move(fElapsedTime);
-        fEnemy_ElapsedTime = 0;
-    }
+    Move(fElapsedTime);
+    //if (fEnemy_ElapsedTime >= 0.1) {
 
-    Draw(World::Instance, fElapsedTime);
-    //if (AnimatedSpritePtr.get())
-    //{
-    //    AnimatedSpritePtr.get()->DrawAt(fElapsedTime, position);
+    //    fEnemy_ElapsedTime = 0;
     //}
+    Draw(World::Instance, fElapsedTime);
 }

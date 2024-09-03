@@ -28,12 +28,13 @@ World::~World()
 
 	delete[] EnemyPtrs;
 	delete PlayerPtr;
+	delete DungeonPtr;
 	Instance = nullptr;
 }
 
 bool World::OnUserCreate()
 {
-	PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
+	//PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
 
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
 
@@ -41,9 +42,9 @@ bool World::OnUserCreate()
 
 	PlayerPtr = new Player(0, 0);
 
-	EnemyPtrs[0] = new Enemy(20, 100);
-	EnemyPtrs[1] = new Enemy(120, 100);
-	EnemyPtrs[2] = new Enemy(220, 100);
+	EnemyPtrs[0] = new Enemy(20, 100, PlayerPtr);
+	EnemyPtrs[1] = new Enemy(120, 100, PlayerPtr);
+	EnemyPtrs[2] = new Enemy(220, 100, PlayerPtr);
 
 
 	return true;

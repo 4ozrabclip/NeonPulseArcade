@@ -9,7 +9,7 @@ public:
 	Map();
 	virtual ~Map();
 	virtual void Draw(World* World, float fElapsedTime) const override;
-
+	virtual void SetMap(int map[]);
 protected:
 	std::unique_ptr<int[]> MapLayout;
 	int WhichSpriteInt;

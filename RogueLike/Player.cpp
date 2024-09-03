@@ -13,7 +13,7 @@ Player::Player(int x, int y)
     animSequence.NumberOfFrames = 4;
     animSequence.SpriteSize = World::Instance->TileSize;
     animSequence.AnimationDuration = 1.0f;
-    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, animSequence);
+    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, animSequence);
 }
 Player::~Player()
 {
@@ -56,9 +56,9 @@ void Player::SetXY(float InX, float InY)
     Pos.x += InX;
     Pos.y += InY;
 
-    if (Pos.x >= 256 - 12)   
+    if (Pos.x >= 240 - 12)   
     {
-        Pos.x = 256 - 12;
+        Pos.x = 240 - 12;
     }
     if (Pos.x <= 0)
     {
@@ -72,4 +72,9 @@ void Player::SetXY(float InX, float InY)
     {
         Pos.y = 0;
     }
+}
+
+olc::vi2d Player::GetXY()
+{
+    return olc::vi2d(Pos.x, Pos.y);
 }

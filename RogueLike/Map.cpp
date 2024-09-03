@@ -32,3 +32,8 @@ void Map::Draw(World* World, float fElapsedTime) const
         }
     }
 }
+
+void Map::SetMap(int map[])
+{
+    std::copy(map, map + 400, MapLayout.get());
+}

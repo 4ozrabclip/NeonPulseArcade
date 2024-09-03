@@ -7,14 +7,19 @@
 class World;
 
 enum InitialSprite {
-	BORDER,
+	BORDER = 0,
 	BRICKS,
 	DOOR,
 	RABCLIP,
 	FERG,
 	WOOD,
 	ALIEN,
-	SPEAKER
+	SPEAKER,
+	DOORLADY,
+	DESK_LEFT,
+	DESK_DECKS_RAB,
+	DESK_RIGHT,
+
 };
 struct FCoords{
 	float x;

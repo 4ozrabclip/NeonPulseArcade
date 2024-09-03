@@ -12,6 +12,7 @@ public:
 	virtual void Move(float fElapsedTime) override;
 
 	void SetXY(float InX, float InY);
+	olc::vi2d GetXY();
 
 protected:
 	float fPlayer_ElapsedTime;

@@ -37,7 +37,19 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
         return olc::vi2d(12, 2)
             * World::Instance->TileSize;
     case SPEAKER:
-        return olc::vi2d(0, 8)
+        return olc::vi2d(8, 0)
+            * World::Instance->TileSize;
+    case DOORLADY:
+        return olc::vi2d(1, 2)
+            * World::Instance->TileSize;
+    case DESK_LEFT:
+        return olc::vi2d(8, 3)
+            * World::Instance->TileSize;
+    case DESK_DECKS_RAB:
+        return olc::vi2d(9, 3)
+            * World::Instance->TileSize;
+    case DESK_RIGHT:
+        return olc::vi2d(10, 3)
             * World::Instance->TileSize;
     default:
         return olc::vi2d(-1, -1); 
