@@ -1,9 +1,9 @@
 #pragma once
 #include "olcPixelGameEngine.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "Room.h"
-
+class Map;
+class Player;
+class Enemy;
+class Dungeon1;
 class World : public olc::PixelGameEngine
 {
 public:
@@ -23,4 +23,5 @@ private:
 	static constexpr int ArraySize = 3;
 	Enemy** EnemyPtrs = new Enemy * [ArraySize];
 	Player* PlayerPtr;
+	Dungeon1* DungeonPtr;
 };

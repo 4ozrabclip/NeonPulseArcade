@@ -74,12 +74,12 @@
 	​​​​​​​​​​​​​​	Demonstrate your understanding of class inheritance and virtual functions. 
 	You should refer to the “Recommendations” section for a suggested class hierarchy for your game objects and some useful virtual functions
 	[Mark 15%] Templated Array Class
-	​​​​​​​​​​​​​​	Implement the templated array class as specified later in the brief. You must use this to store your Actors, Items, Doors on a per room basis.
+	​​​​​​​​​​​​​​	Implement the templated array class as specified later in the brief. You must use this to store your Actors, Items, Doors on a per Map basis.
 
 	#design
 	You should be able to use the keyboard (arrow keys) to move the player around, 
-	you can either move the player around the room or the room around the player (with the player character locked to the centre of the screen). 
-	You only need to draw one room at a time, and that room should be whatever room the player is currently in. 
+	you can either move the player around the Map or the Map around the player (with the player character locked to the centre of the screen). 
+	You only need to draw one Map at a time, and that Map should be whatever Map the player is currently in. 
 
 	The players position must be stored as a TVector2D (as described later in the document under technical requirements).
 	Any and all locations (X ,Y coordinates) must be stored as your TVector2D class. 
@@ -105,7 +105,7 @@
 	You may add any extra game logic you please on top. Some people have added projectile physics in the past! Go Wild!
 
 ## Reccomendations
-	I highly recommend that you store all players, enemies, items, doors in your own Template Array class and iterate over those lists calling “Draw” on each one when drawing the room.
+	I highly recommend that you store all players, enemies, items, doors in your own Template Array class and iterate over those lists calling “Draw” on each one when drawing the Map.
 
 	I highly recommend you store position in the Actor class and use that in your derived classes for your “Draw” function.
 

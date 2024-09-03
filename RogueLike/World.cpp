@@ -1,7 +1,15 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "World.h"
+#include "Map.h"
+#include "Brick.h"
 #include "AnimatedSprite.h"
+#include "Dungeon1.h"
+
+#include <windows.h>
+#include <stdlib.h>
+
+#pragma comment(lib, "Winmm.lib")
 
 World* World::Instance = nullptr;
 
@@ -25,7 +33,11 @@ World::~World()
 
 bool World::OnUserCreate()
 {
+	PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
+
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
+
+	DungeonPtr = new Dungeon1();
 
 	PlayerPtr = new Player(0, 0);
 
@@ -40,13 +52,15 @@ bool World::OnUserUpdate(float fElapsedTime)
 {
 	const olc::Pixel ClearPixel;
 	Clear(ClearPixel);
+	SetPixelMode(olc::Pixel::MASK);
+
+	DungeonPtr->DrawRoom(this, fElapsedTime);
 
 	for (int i = 0; i < ArraySize; ++i)
 	{
 		EnemyPtrs[i]->Update(fElapsedTime);
 	}
 	PlayerPtr->Update(fElapsedTime);
-	PlayerPtr->Draw(this, fElapsedTime);
 
 	return true;
 }

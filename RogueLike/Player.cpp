@@ -5,42 +5,24 @@
 
 Player::Player(int x, int y)
 {
-    this->X = x;
-    this->Y = y;
-    
-
+    this->Pos.x = x;
+    this->Pos.y = y;
     Tileset = World::Instance->Tileset;
     FAnimSequence animSequence;
-    EAnimationType AnimType = EAnimationType::STILL;
     animSequence.WhichSprite = Actor::SpritePosition(RABCLIP);
     animSequence.NumberOfFrames = 4;
     animSequence.SpriteSize = World::Instance->TileSize;
     animSequence.AnimationDuration = 1.0f;
-
-    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, AnimType, animSequence);
+    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, animSequence);
 }
-
 Player::~Player()
 {
-}
-
-void Player::Draw(World* World, float fElapsedTime) const
-{
-    olc::vi2d position(X, Y);
-
-    if (AnimatedSpritePtr)
-    {
-        AnimatedSpritePtr->DrawAt(fElapsedTime, position);
-    }
-    else
-    {
-        World->DrawRect(position, olc::vi2d(8, 8), olc::Pixel(255, 0, 0));
-    }
 }
 
 void Player::Update(float fElapsedTime)
 {
     Move(fElapsedTime);
+    Draw(World::Instance, fElapsedTime);
 }
 
 void Player::Move(float fElapsedTime)
@@ -50,50 +32,44 @@ void Player::Move(float fElapsedTime)
     if (World::Instance->GetKey(olc::Key::LEFT).bHeld)
     {
         x -= 100 * fElapsedTime;
-        AnimatedSpritePtr->SetAnimationType(EAnimationType::LOOP_FOREVER);
     }
     else if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
     {
         x += 100 * fElapsedTime;
-        AnimatedSpritePtr->SetAnimationType(EAnimationType::LOOP_FOREVER);
     }
     else if (World::Instance->GetKey(olc::Key::UP).bHeld)
     {
         y -= 100 * fElapsedTime;
-        AnimatedSpritePtr->SetAnimationType(EAnimationType::LOOP_FOREVER);
     }
     else if (World::Instance->GetKey(olc::Key::DOWN).bHeld)
     {
+
         y += 100 * fElapsedTime;
-        AnimatedSpritePtr->SetAnimationType(EAnimationType::LOOP_FOREVER);
     }
     else {
-        AnimatedSpritePtr->SetAnimationType(EAnimationType::STILL);
     }
-
     SetXY(x, y);
-
 }
 
 void Player::SetXY(float InX, float InY)
 {
-    X += InX;
-    Y += InY;
+    Pos.x += InX;
+    Pos.y += InY;
 
-    if (X >= 256 - 12)   //max x boundry
+    if (Pos.x >= 256 - 12)   
     {
-        X = 256 - 12;
+        Pos.x = 256 - 12;
     }
-    if (X <= 0)     //min x boundry
+    if (Pos.x <= 0)
     {
-        X = 0;
+        Pos.x = 0;
     }
-    if (Y >= 240 - 12)   //max y boundry
+    if (Pos.y >= 240 - 12)
     {
-        Y = 240 - 12;
+        Pos.y = 240 - 12;
     }
-    if (Y <= 0)     //min x boundry
+    if (Pos.y <= 0)
     {
-        Y = 0;
+        Pos.y = 0;
     }
 }

@@ -1,6 +1,12 @@
 #include "Actor.h"
 #include "World.h"
 
+Actor::Actor()
+{
+    Tileset = World::Instance->Tileset;
+    AnimatedSpritePtr = nullptr;
+}
+
 void Actor::Tick()
 {
 }
@@ -36,4 +42,25 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
     default:
         return olc::vi2d(-1, -1); 
     }
+}
+
+void Actor::Draw(World* World, float fElapsedTime) const
+{
+    olc::vi2d position(Actor::Pos.x, Actor::Pos.y);
+
+    if (AnimatedSpritePtr.get())
+    {
+        AnimatedSpritePtr.get()->DrawAt(fElapsedTime, position);
+    }
+    else
+    {
+        olc::Pixel color(255, 0, 0, 255);
+        olc::vi2d size(8, 8);
+        World->DrawRect(position, size, color);
+    }
+}
+
+void Actor::SetAnimatedSprite(std::shared_ptr<AnimatedSprite> AnimatedSprite)
+{
+    AnimatedSpritePtr = AnimatedSprite;
 }
