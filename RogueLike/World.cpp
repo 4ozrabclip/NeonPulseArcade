@@ -52,11 +52,10 @@ bool World::OnUserCreate()
 	//PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
 
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
+	PlayerPtr = new Player(0, 0);
 
 	DungeonPtr = new Dungeon1();
 	SetBarriers(olc::vi2d(228, 228));
-
-	PlayerPtr = new Player(0, 0);
 
 	EnemyPtrs[0] = new Enemy(20, 100, PlayerPtr);
 	EnemyPtrs[1] = new Enemy(120, 100, PlayerPtr);

@@ -14,9 +14,12 @@ public:
 
 	virtual void SetXY(float InX, float InY);
 	virtual olc::vi2d GetXY();
+	virtual void SetMoveSpeed(int InMoveSpeed);
+	virtual int GetMoveSpeed();
 
 protected:
 	float fPlayer_ElapsedTime;
+	int MoveSpeed;
 private:
 	Player(const Player& other);
 };

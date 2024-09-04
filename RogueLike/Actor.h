@@ -20,6 +20,7 @@ enum InitialSprite {
 	DESK_LEFT,
 	DESK_DECKS_RAB,
 	DESK_RIGHT,
+	DOORSTAIRS,
 	PILL = 13,
 };
 struct FCoords {
@@ -38,9 +39,9 @@ public:
 
 	virtual void SetXY(float InX, float InY);
 	virtual olc::vi2d GetXY();
-
-protected:
 	FCoords Pos;
+protected:
+	FAnimSequence AnimSeq;
 	std::shared_ptr<AnimatedSprite> AnimatedSpritePtr;
 	std::shared_ptr<olc::Sprite> Tileset;
 

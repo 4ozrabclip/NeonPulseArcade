@@ -3,6 +3,7 @@
 #include <memory>
 
 class Pill;
+class Door;
 class Dungeon1 : public Map
 {
 public:
@@ -11,5 +12,6 @@ public:
 	virtual void SetMap(int map[]);
 private:
 	Pill* PillPtr;
+	Door* DoorPtr;
 };
 

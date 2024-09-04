@@ -3,6 +3,7 @@
 #include "Brick.h"
 #include "AnimatedSprite.h"
 #include "Pill.h"
+#include "Door.h"
 Dungeon1::Dungeon1()
 {
 	MapLayout = std::make_unique<int[]>(400);
@@ -26,11 +27,11 @@ Dungeon1::Dungeon1()
 		1 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  1 ,
 		1 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  1 ,
 		1 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  1 ,
-		1 , 1  ,1 , 1 , 1 , 1 , 1 , 1 , 1  , 1 , 1 , 1  ,1 , 1 , 1 , 1 , 1 , 8 , 1  , 1 ,
+		1 , 1  ,1 , 1 , 1 , 1 , 1 , 1 , 1  , 1 , 1 , 1  ,1 , 1 , 1 , 1 , 1 , 0 , 1  , 1 ,
 	};
 
 	SetMap(NewMap);
-
+	DoorPtr = new Door(19, 17);
 	PillPtr = new Pill(5, 8);
 }
 void Dungeon1::DrawRoom(World* world, float fElapsedTime)
@@ -50,10 +51,12 @@ void Dungeon1::DrawRoom(World* world, float fElapsedTime)
 	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, animSequence);
 	Draw(world, fElapsedTime);
 
-	WhichSpriteInt = DOORLADY;
-	animSequence.WhichSprite = Actor::SpritePosition(DOORLADY);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, animSequence);
-	Draw(world, fElapsedTime);
+	//WhichSpriteInt = DOORLADY;
+	//animSequence.WhichSprite = Actor::SpritePosition(DOORLADY);
+	//AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, animSequence);
+	//Draw(world, fElapsedTime);
+
+	DoorPtr->Update(world, fElapsedTime);
 
 	WhichSpriteInt = SPEAKER;
 	animSequence.NumberOfFrames = 2;
@@ -76,8 +79,7 @@ void Dungeon1::DrawRoom(World* world, float fElapsedTime)
 	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, animSequence);
 	Draw(world, fElapsedTime);
 
-	PillPtr->Draw(world, fElapsedTime);
-
+	PillPtr->Update(world, fElapsedTime);
 
 }
 void Dungeon1::SetMap(int map[])

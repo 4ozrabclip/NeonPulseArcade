@@ -4,6 +4,6 @@ class Pill: public Item
 {
 public:
 	Pill(int x, int y);
-
+	virtual void ItemEffect() override;
 };
 

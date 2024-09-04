@@ -15,6 +15,7 @@ Player::Player(int x, int y)
     animSequence.SpriteSize = World::Instance->TileSize;
     animSequence.AnimationDuration = 1.0f;
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, animSequence);
+    MoveSpeed = 100;
 }
 Player::~Player()
 {
@@ -33,19 +34,19 @@ void Player::Move(float fElapsedTime)
 
     if (World::Instance->GetKey(olc::Key::LEFT).bHeld)
     {
-        x -= 100 * fElapsedTime;
+        x -= MoveSpeed * fElapsedTime;
     }
     else if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
     {
-        x += 100 * fElapsedTime;
+        x += MoveSpeed * fElapsedTime;
     }
     else if (World::Instance->GetKey(olc::Key::UP).bHeld)
     {
-        y -= 100 * fElapsedTime;
+        y -= MoveSpeed * fElapsedTime;
     }
     else if (World::Instance->GetKey(olc::Key::DOWN).bHeld)
     {
-        y += 100 * fElapsedTime;
+        y += MoveSpeed * fElapsedTime;
     }
     else {
     }
@@ -78,4 +79,14 @@ void Player::SetXY(float InX, float InY)
 olc::vi2d Player::GetXY()
 {
     return olc::vi2d(Pos.coords.x, Pos.coords.y);
+}
+
+void Player::SetMoveSpeed(int InMoveSpeed)
+{
+    MoveSpeed = InMoveSpeed;
+}
+
+int Player::GetMoveSpeed()
+{
+    return MoveSpeed;
 }

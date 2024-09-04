@@ -5,11 +5,15 @@ Pill::Pill(int x, int y)
 {
     this->Pos.coords.x = x * 12;
     this->Pos.coords.y = y * 12;
-    FAnimSequence animSequence;
-    animSequence.WhichSprite = Actor::SpritePosition(PILL);
-    animSequence.NumberOfFrames = 2;
-    animSequence.SpriteSize = World::Instance->TileSize;
-    animSequence.AnimationDuration = 1.0f;
+    AnimSeq.WhichSprite = Actor::SpritePosition(PILL);
+    AnimSeq.NumberOfFrames = 2;
+    AnimSeq.SpriteSize = World::Instance->TileSize;
+    AnimSeq.AnimationDuration = 1.0f;
 
-    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, animSequence);
+    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+}
+
+void Pill::ItemEffect()
+{
+    PlayerPtr->SetMoveSpeed(200);
 }

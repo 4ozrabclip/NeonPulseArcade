@@ -35,5 +35,14 @@ public:
 		x += InVector.x;
 		y += InVector.y;
 	}
+	void operator-=(const TVector2D<T>& InVector)
+	{
+		x += InVector.x;
+		y += InVector.y;
+	}
 
+	T Distance(const TVector2D<T>& InVector)
+	{
+		return abs(this->x - InVector.x) + abs(this->y - InVector.y);
+	}
 };

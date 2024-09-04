@@ -29,17 +29,18 @@ void Enemy::Move(float fElapsedTime)
     int TargetX = PlayerPtr->GetXY().x;
     int TargetY = PlayerPtr->GetXY().y;
 
-    float DToTargetX = TargetX - Pos.coords.x;
-    float DToTargetY = TargetY - Pos.coords.y;
+    TVector2D<float> DToTarget = { TargetX - Pos.coords.x, TargetY - Pos.coords.y };
 
-    float Distance = std::sqrt(DToTargetX * DToTargetX + DToTargetY * DToTargetY);
 
-    if (Distance != 0)
+    float Distance = std::sqrt(DToTarget.x * DToTarget.x + DToTarget.y * DToTarget.y);
+
+    if (this->Pos.coords.Distance(PlayerPtr->Pos.coords) != 0)
     {
-        DToTargetX /= Distance;
-        DToTargetY /= Distance;
+        DToTarget.x /= this->Pos.coords.Distance(PlayerPtr->Pos.coords);
+        DToTarget.y /= this->Pos.coords.Distance(PlayerPtr->Pos.coords);
     }
     else {
+
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> distr(-1, 1);
@@ -47,8 +48,8 @@ void Enemy::Move(float fElapsedTime)
         Pos.coords.y += distr(gen);
     }
     float MoveSpeed = 1000.0f;
-    Pos.coords.x += DToTargetX * 10 * fElapsedTime;
-    Pos.coords.y += DToTargetY * 10 * fElapsedTime;
+    Pos.coords.x += DToTarget.x * 10 * fElapsedTime;
+    Pos.coords.y += DToTarget.y * 10 * fElapsedTime;
 
     if (Pos.coords.x >= 240 - 12)   
     {
