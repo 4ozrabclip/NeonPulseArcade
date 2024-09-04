@@ -2,6 +2,7 @@
 #include "World.h"
 #include "Brick.h"
 #include "AnimatedSprite.h"
+#include "Pill.h"
 Dungeon1::Dungeon1()
 {
 	MapLayout = std::make_unique<int[]>(400);
@@ -30,7 +31,7 @@ Dungeon1::Dungeon1()
 
 	SetMap(NewMap);
 
-
+	PillPtr = new Pill(5, 8);
 }
 void Dungeon1::DrawRoom(World* world, float fElapsedTime)
 {
@@ -74,6 +75,8 @@ void Dungeon1::DrawRoom(World* world, float fElapsedTime)
 	animSequence.WhichSprite = Actor::SpritePosition(DESK_RIGHT);
 	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, animSequence);
 	Draw(world, fElapsedTime);
+
+	PillPtr->Draw(world, fElapsedTime);
 
 
 }

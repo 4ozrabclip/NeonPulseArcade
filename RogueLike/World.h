@@ -1,14 +1,24 @@
 #pragma once
 #include "olcPixelGameEngine.h"
+#include "TVector2D.h"
 class Map;
 class Player;
 class Enemy;
 class Dungeon1;
+
+struct FMapCoordinates {
+	TVector2D<float> coords;
+};
+
 class World : public olc::PixelGameEngine
 {
+
 public:
 	World();
 	~World() override;
+	void SetBarriers(olc::vi2d InBarriers);
+	olc::vi2d GetMapCoordinates();
+	olc::vi2d GetBarriers();
 
 	virtual bool OnUserCreate() override;
 	virtual bool OnUserUpdate(float fElapsedTime) override;
@@ -18,10 +28,11 @@ public:
 
 	std::shared_ptr<olc::Sprite> Tileset;
 	const olc::vi2d TileSize = { 12, 12 };
-
-private:
-	static constexpr int ArraySize = 3;
-	Enemy** EnemyPtrs = new Enemy * [ArraySize];
 	Player* PlayerPtr;
+private:
+	olc::vi2d Barriers;
+	FMapCoordinates MapCoords;
+	Enemy** EnemyPtrs = new Enemy * [3];
+
 	Dungeon1* DungeonPtr;
 };

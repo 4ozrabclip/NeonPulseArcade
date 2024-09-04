@@ -1,12 +1,13 @@
 #include "Player.h"
 #include "World.h"
+#include "Enemy.h"
 #include <iostream>
 #include <random>
 
 Player::Player(int x, int y)
 {
-    this->Pos.x = x;
-    this->Pos.y = y;
+    this->Pos.coords.x = x;
+    this->Pos.coords.y = y;
     Tileset = World::Instance->Tileset;
     FAnimSequence animSequence;
     animSequence.WhichSprite = Actor::SpritePosition(RABCLIP);
@@ -23,6 +24,7 @@ void Player::Update(float fElapsedTime)
 {
     Move(fElapsedTime);
     Draw(World::Instance, fElapsedTime);
+    
 }
 
 void Player::Move(float fElapsedTime)
@@ -43,7 +45,6 @@ void Player::Move(float fElapsedTime)
     }
     else if (World::Instance->GetKey(olc::Key::DOWN).bHeld)
     {
-
         y += 100 * fElapsedTime;
     }
     else {
@@ -53,28 +54,28 @@ void Player::Move(float fElapsedTime)
 
 void Player::SetXY(float InX, float InY)
 {
-    Pos.x += InX;
-    Pos.y += InY;
+    Pos.coords.x += InX;
+    Pos.coords.y += InY;
 
-    if (Pos.x >= 240 - 12)   
+    if (Pos.coords.x >= 240 - 12)   
     {
-        Pos.x = 240 - 12;
+        Pos.coords.x = 240 - 12;
     }
-    if (Pos.x <= 0)
+    if (Pos.coords.x <= 0)
     {
-        Pos.x = 0;
+        Pos.coords.x = 0;
     }
-    if (Pos.y >= 240 - 12)
+    if (Pos.coords.y >= 240 - 12)
     {
-        Pos.y = 240 - 12;
+        Pos.coords.y = 240 - 12;
     }
-    if (Pos.y <= 0)
+    if (Pos.coords.y <= 0)
     {
-        Pos.y = 0;
+        Pos.coords.y = 0;
     }
 }
 
 olc::vi2d Player::GetXY()
 {
-    return olc::vi2d(Pos.x, Pos.y);
+    return olc::vi2d(Pos.coords.x, Pos.coords.y);
 }

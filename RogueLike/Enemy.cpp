@@ -7,8 +7,8 @@
 
 Enemy::Enemy(int x, int y, Player* InPlayerPtr)
 {
-    this->Pos.x = x;
-    this->Pos.y = y;
+    this->Pos.coords.x = x;
+    this->Pos.coords.y = y;
     Tileset = World::Instance->Tileset;
     FAnimSequence animSequence;
     animSequence.WhichSprite = Actor::SpritePosition(ALIEN);
@@ -26,13 +26,11 @@ Enemy::~Enemy()
 
 void Enemy::Move(float fElapsedTime)
 {
-
-
     int TargetX = PlayerPtr->GetXY().x;
     int TargetY = PlayerPtr->GetXY().y;
 
-    float DToTargetX = TargetX - Pos.x;
-    float DToTargetY = TargetY - Pos.y;
+    float DToTargetX = TargetX - Pos.coords.x;
+    float DToTargetY = TargetY - Pos.coords.y;
 
     float Distance = std::sqrt(DToTargetX * DToTargetX + DToTargetY * DToTargetY);
 
@@ -45,34 +43,34 @@ void Enemy::Move(float fElapsedTime)
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> distr(-1, 1);
-        Pos.x += distr(gen);
-        Pos.y += distr(gen);
+        Pos.coords.x += distr(gen);
+        Pos.coords.y += distr(gen);
     }
     float MoveSpeed = 1000.0f;
-    Pos.x += DToTargetX *10* fElapsedTime;
-    Pos.y += DToTargetY *10* fElapsedTime;
+    Pos.coords.x += DToTargetX * 10 * fElapsedTime;
+    Pos.coords.y += DToTargetY * 10 * fElapsedTime;
 
-    if (Pos.x >= 240 - 12)   
+    if (Pos.coords.x >= 240 - 12)   
     {
-        Pos.x = 240 - 12;
+        Pos.coords.x = 240 - 12;
     }
-    if (Pos.x <= 0)
+    if (Pos.coords.x <= 0)
     {
-        Pos.x = 0;
+        Pos.coords.x = 0;
     }
-    if (Pos.y >= 240 - 12)
+    if (Pos.coords.y >= 240 - 12)
     {
-        Pos.y = 240 - 12;
+        Pos.coords.y = 240 - 12;
     }
-    if (Pos.y <= 0)
+    if (Pos.coords.y <= 0)
     {
-        Pos.y = 0;
+        Pos.coords.y = 0;
     }
 }
 
 void Enemy::Update(float fElapsedTime)
 {
-    olc::vi2d position(Pos.x, Pos.y);
+    olc::vi2d position(Pos.coords.x, Pos.coords.y);
 
     fEnemy_ElapsedTime += fElapsedTime;
     Move(fElapsedTime);

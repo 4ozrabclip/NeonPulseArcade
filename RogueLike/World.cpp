@@ -21,7 +21,7 @@ World::World()
 
 World::~World()
 {
-	for (int i = 0; i < ArraySize; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		delete EnemyPtrs[i];
 	}
@@ -32,6 +32,21 @@ World::~World()
 	Instance = nullptr;
 }
 
+void World::SetBarriers(olc::vi2d InBarriers)
+{
+	Barriers = InBarriers;
+}
+
+olc::vi2d World::GetMapCoordinates()
+{
+	return olc::vi2d(MapCoords.coords.x, MapCoords.coords.y);
+}
+
+olc::vi2d World::GetBarriers()
+{
+	return Barriers;
+}
+
 bool World::OnUserCreate()
 {
 	//PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
@@ -39,13 +54,13 @@ bool World::OnUserCreate()
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
 
 	DungeonPtr = new Dungeon1();
+	SetBarriers(olc::vi2d(228, 228));
 
 	PlayerPtr = new Player(0, 0);
 
 	EnemyPtrs[0] = new Enemy(20, 100, PlayerPtr);
 	EnemyPtrs[1] = new Enemy(120, 100, PlayerPtr);
 	EnemyPtrs[2] = new Enemy(220, 100, PlayerPtr);
-
 
 	return true;
 }
@@ -57,7 +72,7 @@ bool World::OnUserUpdate(float fElapsedTime)
 
 	DungeonPtr->DrawRoom(this, fElapsedTime);
 
-	for (int i = 0; i < ArraySize; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		EnemyPtrs[i]->Update(fElapsedTime);
 	}

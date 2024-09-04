@@ -138,7 +138,9 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Dungeon1.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pill.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -156,6 +158,8 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Dungeon1.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Pill.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Map.h" />

@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{d451481f-6990-4d10-8311-c673fe5fcf0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Items">
+      <UniqueIdentifier>{b3678ba9-4b8d-4e18-be83-2713a3a625e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Items">
+      <UniqueIdentifier>{4bc9f5b7-aaee-45de-89a2-b6d190570139}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -72,6 +78,12 @@
     <ClCompile Include="Dungeon1.cpp">
       <Filter>Source Files\Environment</Filter>
     </ClCompile>
+    <ClCompile Include="Pill.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="planning.md" />
@@ -106,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="Dungeon1.h">
       <Filter>Header Files\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Pill.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

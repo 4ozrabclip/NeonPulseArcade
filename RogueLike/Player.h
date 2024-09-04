@@ -2,6 +2,7 @@
 #include "Character.h"
 #include <memory>
 
+
 class Player : public Character
 {
 public:
@@ -11,12 +12,11 @@ public:
 	virtual void Update(float fElapsedTime) override;
 	virtual void Move(float fElapsedTime) override;
 
-	void SetXY(float InX, float InY);
-	olc::vi2d GetXY();
+	virtual void SetXY(float InX, float InY);
+	virtual olc::vi2d GetXY();
 
 protected:
 	float fPlayer_ElapsedTime;
 private:
 	Player(const Player& other);
 };
-

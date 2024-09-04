@@ -51,6 +51,9 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
     case DESK_RIGHT:
         return olc::vi2d(10, 3)
             * World::Instance->TileSize;
+    case PILL:
+        return olc::vi2d(13, 0)
+            * World::Instance->TileSize;
     default:
         return olc::vi2d(-1, -1); 
     }
@@ -58,7 +61,7 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
 
 void Actor::Draw(World* World, float fElapsedTime) const
 {
-    olc::vi2d position(Actor::Pos.x, Actor::Pos.y);
+    olc::vi2d position(Actor::Pos.coords.x, Actor::Pos.coords.y);
 
     if (AnimatedSpritePtr.get())
     {
@@ -75,4 +78,32 @@ void Actor::Draw(World* World, float fElapsedTime) const
 void Actor::SetAnimatedSprite(std::shared_ptr<AnimatedSprite> AnimatedSprite)
 {
     AnimatedSpritePtr = AnimatedSprite;
+}
+
+olc::vi2d Actor::GetXY()
+{
+    return olc::vi2d(Pos.coords.x, Pos.coords.y);
+}
+
+void Actor::SetXY(float InX, float InY)
+{
+    Pos.coords.x += InX;
+    Pos.coords.y += InY;
+
+    if (Pos.coords.x >= 240 - 12)
+    {
+        Pos.coords.x = 240 - 12;
+    }
+    if (Pos.coords.x <= 0)
+    {
+        Pos.coords.x = 0;
+    }
+    if (Pos.coords.y >= 240 - 12)
+    {
+        Pos.coords.y = 240 - 12;
+    }
+    if (Pos.coords.y <= 0)
+    {
+        Pos.coords.y = 0;
+    }
 }

@@ -119,6 +119,7 @@
 	The solution to this problem is to run srand IN the Thread created by PixelGameEngine. 
 	This is very simple to do, we just run the srand function in the OnUserCreate method we've overriden from pixelgameengine, and you should now have random positions for your enemies.
 
+
 ## Extra Resources
 **Epic Games Coding Standard**
 https://dev.epicgames.com/documentation/en-us/unreal-engine/epic-cplusplus-coding-standard-for-unreal-engine
