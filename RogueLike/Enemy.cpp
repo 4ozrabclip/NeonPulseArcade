@@ -10,20 +10,32 @@ Enemy::Enemy(int x, int y, Player* InPlayerPtr)
     this->Pos.coords.x = x;
     this->Pos.coords.y = y;
     Tileset = World::Instance->Tileset;
-    FAnimSequence animSequence;
-    animSequence.WhichSprite = Actor::SpritePosition(ALIEN);
-    animSequence.NumberOfFrames = 2;
-    animSequence.SpriteSize = World::Instance->TileSize;
-    animSequence.AnimationDuration = 1.0f;
+    AnimSeq.WhichSprite = Actor::SpritePosition(ALIEN);
+    AnimSeq.NumberOfFrames = 2;
+    AnimSeq.SpriteSize = World::Instance->TileSize;
+    AnimSeq.AnimationDuration = 1.0f;
 
     PlayerPtr = InPlayerPtr;
 
-    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, animSequence);
+    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, AnimSeq);
 }
 Enemy::~Enemy()
 {
 }
+void Enemy::Update(World* world, float fElapsedTime)
+{
+    //olc::vi2d position(Pos.coords.x, Pos.coords.y);
 
+    fEnemy_ElapsedTime += fElapsedTime;
+    Move(fElapsedTime);
+    //if (fEnemy_ElapsedTime >= 0.1) {
+
+    //    fEnemy_ElapsedTime = 0;
+    //}
+    Draw(world, fElapsedTime);
+    PushBackCollision({ 228,228 }, { 0, 0 });
+
+}
 void Enemy::Move(float fElapsedTime)
 {
     int TargetX = PlayerPtr->GetXY().x;
@@ -51,33 +63,22 @@ void Enemy::Move(float fElapsedTime)
     Pos.coords.x += DToTarget.x * 10 * fElapsedTime;
     Pos.coords.y += DToTarget.y * 10 * fElapsedTime;
 
-    if (Pos.coords.x >= 240 - 12)   
-    {
-        Pos.coords.x = 240 - 12;
-    }
-    if (Pos.coords.x <= 0)
-    {
-        Pos.coords.x = 0;
-    }
-    if (Pos.coords.y >= 240 - 12)
-    {
-        Pos.coords.y = 240 - 12;
-    }
-    if (Pos.coords.y <= 0)
-    {
-        Pos.coords.y = 0;
-    }
+
 }
 
-void Enemy::Update(float fElapsedTime)
+bool Enemy::HasCollided()
 {
-    olc::vi2d position(Pos.coords.x, Pos.coords.y);
+    float PlayerX = World::Instance->PlayerPtr->GetXY().x;
+    float PlayerY = World::Instance->PlayerPtr->GetXY().y;
 
-    fEnemy_ElapsedTime += fElapsedTime;
-    Move(fElapsedTime);
-    //if (fEnemy_ElapsedTime >= 0.1) {
+    float ItemX = this->GetXY().x;
+    float ItemY = this->GetXY().y;
 
-    //    fEnemy_ElapsedTime = 0;
-    //}
-    Draw(World::Instance, fElapsedTime);
+    //olc::vi2d PlayerPos = {PlayerX, PlayerY};
+
+    float DeltaX = PlayerX - ItemX;
+    float DeltaY = PlayerY - ItemY;
+    float DistanceSquared = DeltaX * DeltaX + DeltaY * DeltaY;
+
+    return DistanceSquared <= 6;
 }

@@ -8,8 +8,8 @@ public:
 	Item();
 	Item(int x, int y);
 	virtual void TakeItem();
-	virtual void Update(World* world, float fElapsedTime);
-
+	virtual void Update(World* world, float fElapsedTime) override;
+	//virtual bool HasCollided();
 	virtual void ItemEffect();
 protected:
 	bool bItemTaken;

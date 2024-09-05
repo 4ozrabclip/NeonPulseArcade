@@ -8,8 +8,10 @@ public:
 	Enemy(int x, int y, Player* InPlayerPtr);
 	virtual ~Enemy();
 
-	virtual void Update(float fElapsedTime) override;
+	virtual void Update(World* world, float fElapsedTime) override;
 	virtual void Move(float fElapsedTime) override;
+	
+	virtual bool HasCollided();
 
 protected:
 	float fEnemy_ElapsedTime;

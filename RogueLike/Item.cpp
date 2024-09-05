@@ -22,19 +22,7 @@ void Item::TakeItem()
 
 void Item::Update(World* world, float fElapsedTime)
 {
-    float PlayerX = PlayerPtr->GetXY().x;
-    float PlayerY = PlayerPtr->GetXY().y;
-
-    float ItemX = this->GetXY().x;
-    float ItemY = this->GetXY().y;
-
-    //olc::vi2d PlayerPos = {PlayerX, PlayerY};
-
-    float deltaX = PlayerX - ItemX;
-    float deltaY = PlayerY - ItemY;
-    float distanceSquared = deltaX * deltaX + deltaY * deltaY;
-
-    if (distanceSquared <= 6)
+    if (PlayerPtr->RectangleCollision(this->Pos.coords))
     {
         bItemTaken = true;
     }
@@ -45,10 +33,24 @@ void Item::Update(World* world, float fElapsedTime)
     }
     else {
         ItemEffect();
-        std::cout << "item taken: " << bItemTaken << std::endl;
     }
 }
-
+//bool Item::HasCollided()
+//{
+//    float PlayerX = PlayerPtr->GetXY().x;
+//    float PlayerY = PlayerPtr->GetXY().y;
+//
+//    float ItemX = GetXY().x;
+//    float ItemY = GetXY().y;
+//
+//    //olc::vi2d PlayerPos = {PlayerX, PlayerY};
+//
+//    float DeltaX = PlayerX - ItemX;
+//    float DeltaY = PlayerY - ItemY;
+//    float DistanceSquared = DeltaX * DeltaX + DeltaY * DeltaY;
+//
+//    return DistanceSquared <= 6;
+//}
 void Item::ItemEffect()
 {
 

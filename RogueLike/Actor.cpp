@@ -77,36 +77,35 @@ void Actor::Draw(World* World, float fElapsedTime) const
         World->DrawRect(position, size, color);
     }
 }
-
+bool Actor::RectangleCollision(TVector2D<float> r) const
+{
+    return (this->Pos.coords.x < r.x + 12 && this->Pos.coords.x + 12 > r.x
+        && this->Pos.coords.y < r.y + 12 && this->Pos.coords.y + 12 > r.y);
+}
 void Actor::SetAnimatedSprite(std::shared_ptr<AnimatedSprite> AnimatedSprite)
 {
     AnimatedSpritePtr = AnimatedSprite;
 }
+
+//void Actor::SetCollider(olc::vf2d pos)
+//{
+//    
+//}
 
 olc::vi2d Actor::GetXY()
 {
     return olc::vi2d(Pos.coords.x, Pos.coords.y);
 }
 
+//void Actor::SetAnimSeq(FAnimSequence InAnimSeq)
+//{
+//    this->AnimSeq = InAnimSeq;
+//}
+
+
 void Actor::SetXY(float InX, float InY)
 {
     Pos.coords.x += InX;
     Pos.coords.y += InY;
 
-    if (Pos.coords.x >= 240 - 12)
-    {
-        Pos.coords.x = 240 - 12;
-    }
-    if (Pos.coords.x <= 0)
-    {
-        Pos.coords.x = 0;
-    }
-    if (Pos.coords.y >= 240 - 12)
-    {
-        Pos.coords.y = 240 - 12;
-    }
-    if (Pos.coords.y <= 0)
-    {
-        Pos.coords.y = 0;
-    }
 }

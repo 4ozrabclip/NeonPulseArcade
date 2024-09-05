@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "World.h"
 #include "Map.h"
-#include "Brick.h"
+#include "Wood.h"
 #include "AnimatedSprite.h"
 #include "Dungeon1.h"
 
@@ -17,11 +17,12 @@ World::World()
 {
 	sAppName = "4oz Game";
 	Instance = this;
+	EnemyMax = 3;
 }
 
 World::~World()
 {
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < EnemyMax; ++i)
 	{
 		delete EnemyPtrs[i];
 	}
@@ -52,7 +53,7 @@ bool World::OnUserCreate()
 	//PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
 
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
-	PlayerPtr = new Player(0, 0);
+	PlayerPtr = new Player(20, 20);
 
 	DungeonPtr = new Dungeon1();
 	SetBarriers(olc::vi2d(228, 228));
@@ -69,17 +70,23 @@ bool World::OnUserUpdate(float fElapsedTime)
 	Clear(ClearPixel);
 	SetPixelMode(olc::Pixel::MASK);
 
-	DungeonPtr->DrawRoom(this, fElapsedTime);
+	DungeonPtr->DrawRoom(Instance, fElapsedTime);
 
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < EnemyMax; ++i)
 	{
-		EnemyPtrs[i]->Update(fElapsedTime);
+		EnemyPtrs[i]->Update(Instance, fElapsedTime);
 	}
-	PlayerPtr->Update(fElapsedTime);
+	PlayerPtr->Update(Instance, fElapsedTime);
 
 	return true;
 }
 bool World::OnUserDestroy()
 {
 	return true;
+}
+
+int World::GetNumCharacters()
+{
+
+	return EnemyMax + 1; //max enemys + 1 for player
 }

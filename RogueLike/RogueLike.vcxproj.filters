@@ -13,29 +13,35 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Environment">
-      <UniqueIdentifier>{f5be6b56-39d6-4a6e-b210-4e526c6c41a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{6c283a07-7b81-4a7b-8b72-a1288de3fb40}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Characters">
-      <UniqueIdentifier>{f60e6f1e-53ca-4e7e-a8ee-c12d61ef522e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Environment">
-      <UniqueIdentifier>{94663bb5-6a4c-4a0f-8388-8b51663a96d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Characters">
-      <UniqueIdentifier>{9562dd00-397a-472d-a9ca-383e7dc2547e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{d451481f-6990-4d10-8311-c673fe5fcf0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Items">
+    <Filter Include="Header Files\Actors">
+      <UniqueIdentifier>{08c1fe35-1442-437f-a741-7d061da01853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actors\Characters">
+      <UniqueIdentifier>{9562dd00-397a-472d-a9ca-383e7dc2547e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actors\Items">
+      <UniqueIdentifier>{4bc9f5b7-aaee-45de-89a2-b6d190570139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actors\Environment">
+      <UniqueIdentifier>{94663bb5-6a4c-4a0f-8388-8b51663a96d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actors">
+      <UniqueIdentifier>{baf46626-9f16-4346-bb49-642f3dc0699a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actors\Items">
       <UniqueIdentifier>{b3678ba9-4b8d-4e18-be83-2713a3a625e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Items">
-      <UniqueIdentifier>{4bc9f5b7-aaee-45de-89a2-b6d190570139}</UniqueIdentifier>
+    <Filter Include="Source Files\Actors\Environment">
+      <UniqueIdentifier>{f5be6b56-39d6-4a6e-b210-4e526c6c41a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actors\Characters">
+      <UniqueIdentifier>{f60e6f1e-53ca-4e7e-a8ee-c12d61ef522e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -46,25 +52,22 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>Source Files\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Source Files\Utils</Filter>
+      <Filter>Source Files\Actors\Environment</Filter>
     </ClCompile>
     <ClCompile Include="AnimatedSprite.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Boss.cpp">
-      <Filter>Source Files\Characters</Filter>
+      <Filter>Source Files\Actors\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Source Files\Characters</Filter>
+      <Filter>Source Files\Actors\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Characters</Filter>
+      <Filter>Source Files\Actors\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Characters</Filter>
+      <Filter>Source Files\Actors\Characters</Filter>
     </ClCompile>
     <ClCompile Include="TArray.h">
       <Filter>Header Files\Utils</Filter>
@@ -72,20 +75,23 @@
     <ClCompile Include="TVector2D.h">
       <Filter>Header Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>Source Files\Environment</Filter>
+    <ClCompile Include="Wood.cpp">
+      <Filter>Source Files\Actors\Environment</Filter>
     </ClCompile>
     <ClCompile Include="Dungeon1.cpp">
-      <Filter>Source Files\Environment</Filter>
+      <Filter>Source Files\Actors\Environment</Filter>
     </ClCompile>
     <ClCompile Include="Pill.cpp">
-      <Filter>Source Files\Items</Filter>
+      <Filter>Source Files\Actors\Items</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
-      <Filter>Source Files\Items</Filter>
+      <Filter>Source Files\Actors\Items</Filter>
     </ClCompile>
     <ClCompile Include="Door.cpp">
-      <Filter>Source Files\Environment</Filter>
+      <Filter>Source Files\Actors\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files\Actors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,41 +101,41 @@
     <ClInclude Include="World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="AnimatedSprite.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files\Characters</Filter>
+      <Filter>Header Files\Actors\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Header Files\Characters</Filter>
+      <Filter>Header Files\Actors\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Boss.h">
-      <Filter>Header Files\Characters</Filter>
+      <Filter>Header Files\Actors\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Header Files\Environment</Filter>
+      <Filter>Header Files\Actors\Environment</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Header Files\Characters</Filter>
+      <Filter>Header Files\Actors\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>Header Files\Environment</Filter>
+    <ClInclude Include="Wood.h">
+      <Filter>Header Files\Actors\Environment</Filter>
     </ClInclude>
     <ClInclude Include="Dungeon1.h">
-      <Filter>Header Files\Environment</Filter>
+      <Filter>Header Files\Actors\Environment</Filter>
     </ClInclude>
     <ClInclude Include="Pill.h">
-      <Filter>Header Files\Items</Filter>
+      <Filter>Header Files\Actors\Items</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
-      <Filter>Header Files\Items</Filter>
+      <Filter>Header Files\Actors\Items</Filter>
     </ClInclude>
     <ClInclude Include="Door.h">
-      <Filter>Header Files\Environment</Filter>
+      <Filter>Header Files\Actors\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Header Files\Actors</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

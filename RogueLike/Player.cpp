@@ -9,48 +9,68 @@ Player::Player(int x, int y)
     this->Pos.coords.x = x;
     this->Pos.coords.y = y;
     Tileset = World::Instance->Tileset;
-    FAnimSequence animSequence;
-    animSequence.WhichSprite = Actor::SpritePosition(RABCLIP);
-    animSequence.NumberOfFrames = 4;
-    animSequence.SpriteSize = World::Instance->TileSize;
-    animSequence.AnimationDuration = 1.0f;
-    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, animSequence);
+    AnimSeq.WhichSprite = Actor::SpritePosition(RABCLIP);
+    AnimSeq.NumberOfFrames = 4;
+    AnimSeq.SpriteSize = World::Instance->TileSize;
     MoveSpeed = 100;
+    if (MoveSpeed == 100)
+    {
+        AnimSeq.AnimationDuration = 1.f;
+    } 
+    else if (MoveSpeed > 100)
+    {
+        AnimSeq.AnimationDuration = 0.2f;
+    }
+
+    AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+
 }
 Player::~Player()
 {
 }
 
-void Player::Update(float fElapsedTime)
+void Player::Update(World* World, float fElapsedTime)
 {
     Move(fElapsedTime);
     Draw(World::Instance, fElapsedTime);
-    
+    PushBackCollision({ 228,228 }, { 0, 0 });
 }
 
 void Player::Move(float fElapsedTime)
 {
     float x = 0, y = 0;
 
+    if (World::Instance->GetKey(olc::Key::LEFT).bPressed ||
+        World::Instance->GetKey(olc::Key::RIGHT).bPressed ||
+        World::Instance->GetKey(olc::Key::UP).bPressed ||
+        World::Instance->GetKey(olc::Key::DOWN).bPressed)
+    {
+        AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, AnimSeq);
+    }
     if (World::Instance->GetKey(olc::Key::LEFT).bHeld)
     {
         x -= MoveSpeed * fElapsedTime;
     }
-    else if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
+    if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
     {
         x += MoveSpeed * fElapsedTime;
     }
-    else if (World::Instance->GetKey(olc::Key::UP).bHeld)
+    if (World::Instance->GetKey(olc::Key::UP).bHeld)
     {
         y -= MoveSpeed * fElapsedTime;
     }
-    else if (World::Instance->GetKey(olc::Key::DOWN).bHeld)
+    if (World::Instance->GetKey(olc::Key::DOWN).bHeld)
     {
         y += MoveSpeed * fElapsedTime;
     }
-    else {
-    }
     SetXY(x, y);
+    if (World::Instance->GetKey(olc::Key::LEFT).bReleased ||
+        World::Instance->GetKey(olc::Key::RIGHT).bReleased ||
+        World::Instance->GetKey(olc::Key::UP).bReleased ||
+        World::Instance->GetKey(olc::Key::DOWN).bReleased)
+    {
+        AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+    }
 }
 
 void Player::SetXY(float InX, float InY)
@@ -58,22 +78,7 @@ void Player::SetXY(float InX, float InY)
     Pos.coords.x += InX;
     Pos.coords.y += InY;
 
-    if (Pos.coords.x >= 240 - 12)   
-    {
-        Pos.coords.x = 240 - 12;
-    }
-    if (Pos.coords.x <= 0)
-    {
-        Pos.coords.x = 0;
-    }
-    if (Pos.coords.y >= 240 - 12)
-    {
-        Pos.coords.y = 240 - 12;
-    }
-    if (Pos.coords.y <= 0)
-    {
-        Pos.coords.y = 0;
-    }
+
 }
 
 olc::vi2d Player::GetXY()

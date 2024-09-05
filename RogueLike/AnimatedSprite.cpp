@@ -37,7 +37,7 @@ void AnimatedSprite::DrawAt(float fElapsedTime, olc::vi2d InScreenPosition)
     }
 
     olc::vi2d sourcePos = AnimSequence.WhichSprite;
-    sourcePos.x += currentFrame * (AnimSequence.SpriteSize.x + 1); // +1 for gap
+    sourcePos.x += currentFrame * (AnimSequence.SpriteSize.x);
 
     World* pWorld = World::Instance;
     if (pWorld)

@@ -10,6 +10,7 @@ public:
 	virtual ~Map();
 	virtual void Draw(World* World, float fElapsedTime) const override;
 	virtual void SetMap(int map[]);
+	//virtual bool HasCollided();
 protected:
 	std::unique_ptr<int[]> MapLayout;
 	int WhichSpriteInt;

@@ -1,9 +1,11 @@
 #pragma once
 #include "Map.h"
+#include "Actor.h"
 #include <memory>
 
 class Pill;
 class Door;
+class Wood;
 class Dungeon1 : public Map
 {
 public:
@@ -13,5 +15,6 @@ public:
 private:
 	Pill* PillPtr;
 	Door* DoorPtr;
+	Wood** WoodPtrs = new Wood * [8];
 };
 

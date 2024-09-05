@@ -15,5 +15,11 @@ Pill::Pill(int x, int y)
 
 void Pill::ItemEffect()
 {
+    FAnimSequence PlayerFastWalk;
+    AnimSeq.WhichSprite = Actor::SpritePosition(RABCLIP);
+    AnimSeq.NumberOfFrames = 4;
+    AnimSeq.SpriteSize = World::Instance->TileSize;
+    AnimSeq.AnimationDuration = 0.2f;
     PlayerPtr->SetMoveSpeed(200);
+    //PlayerPtr->SetAnimSeq(PlayerFastWalk);
 }

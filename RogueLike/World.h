@@ -24,15 +24,18 @@ public:
 	virtual bool OnUserUpdate(float fElapsedTime) override;
 	virtual bool OnUserDestroy() override;
 
+	int GetNumCharacters();
+
 	static World* Instance;
 
 	std::shared_ptr<olc::Sprite> Tileset;
 	const olc::vi2d TileSize = { 12, 12 };
 	Player* PlayerPtr;
 private:
+	int EnemyMax;
 	olc::vi2d Barriers;
 	FMapCoordinates MapCoords;
-	Enemy** EnemyPtrs = new Enemy * [3];
+	Enemy** EnemyPtrs = new Enemy * [EnemyMax];
 
 	Dungeon1* DungeonPtr;
 };

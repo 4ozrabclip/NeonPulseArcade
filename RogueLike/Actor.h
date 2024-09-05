@@ -26,6 +26,7 @@ enum InitialSprite {
 struct FCoords {
 	TVector2D<float> coords;
 };
+
 class Actor
 {
 public:
@@ -36,9 +37,12 @@ public:
 	olc::vi2d SpritePosition(InitialSprite sprite) const;
 	virtual void Draw(World* World, float fElapsedTime) const;
 	virtual void SetAnimatedSprite(std::shared_ptr<AnimatedSprite> AnimatedSprite);
-
+	//virtual void SetCollider(olc::vf2d coords);
+	virtual void Update(World* world, float fElapsedTime) {};
 	virtual void SetXY(float InX, float InY);
 	virtual olc::vi2d GetXY();
+	//virtual void SetAnimSeq(FAnimSequence InAnimSeq);
+	bool RectangleCollision(TVector2D<float> r) const;
 	FCoords Pos;
 protected:
 	FAnimSequence AnimSeq;

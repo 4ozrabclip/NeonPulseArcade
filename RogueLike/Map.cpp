@@ -27,6 +27,7 @@ void Map::Draw(World* World, float fElapsedTime) const
 
             if (MapLayout[GridBlock] == WhichSpriteInt)
             {
+                //std::cout << "x: " << x << '\n' << "y: " << y << std::endl;
                 AnimatedSpritePtr->DrawAt(fElapsedTime, RoomGrid);
             }
         }
