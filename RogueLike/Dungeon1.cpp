@@ -41,6 +41,8 @@ Dungeon1::Dungeon1()
 	WoodPtrs[5] = new Wood(12, 14);
 	WoodPtrs[6] = new Wood(13, 14);
 	WoodPtrs[7] = new Wood(16, 14);
+	WoodPtrs[8] = new Wood(17, 14);
+	WoodPtrs[9] = new Wood(18, 14);
 
 
 
@@ -61,7 +63,7 @@ void Dungeon1::DrawRoom(World* world, float fElapsedTime)
 	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
 	Draw(world, fElapsedTime);
 
-	for (int i = 0; i < 8; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		WoodPtrs[i]->Update(world, fElapsedTime);
 	}

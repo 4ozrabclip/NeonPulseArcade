@@ -33,5 +33,4 @@ void Door::Update(World* world, float fElapsedTime)
 void Door::ItemEffect()
 {
     AnimSeq.WhichSprite = Actor::SpritePosition(DOORSTAIRS);
-    
 }

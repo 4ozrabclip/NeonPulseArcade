@@ -15,6 +15,6 @@ public:
 private:
 	Pill* PillPtr;
 	Door* DoorPtr;
-	Wood** WoodPtrs = new Wood * [8];
+	Wood** WoodPtrs = new Wood * [10];
 };
 

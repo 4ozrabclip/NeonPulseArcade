@@ -17,10 +17,10 @@ void Wood::Update(World* world, float fElapsedTime)
 {
     int MaxNumCharacters = World::Instance->GetNumCharacters();
 
-    for (int Num = 0; Num < MaxNumCharacters - 1; Num++)
-    {
-        World::Instance->Enemy
-    }
+    //for (int Num = 0; Num < MaxNumCharacters - 1; Num++)
+    //{
+    //    World::Instance->Enemy
+    //}
 
     if (PlayerPtr->RectangleCollision(Pos.coords))
     {
