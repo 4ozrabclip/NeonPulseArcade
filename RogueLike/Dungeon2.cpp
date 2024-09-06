@@ -14,36 +14,32 @@ Dungeon2::Dungeon2()
 
 void Dungeon2::DrawRoom(World* world)
 {
-	AnimSeq.NumberOfFrames = 2;
-	AnimSeq.SpriteSize = World::Instance->TileSize;
-	AnimSeq.AnimationDuration = 1.0f;
-
+	FAnimSequence WoodSprite;
 	WhichSpriteInt = WOOD;
-	AnimSeq.WhichSprite = Actor::SpritePosition(WOOD);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+	WoodSprite.SpriteSize = World::Instance->TileSize;
+	WoodSprite.NumberOfFrames = 2;
+	WoodSprite.AnimationDuration = 1.0f;
+	WoodSprite.WhichSprite = Actor::SpritePosition(WOOD);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, WoodSprite);
 	Draw(world, 0);
 
+	FAnimSequence SpeakerSprite;
 	WhichSpriteInt = SPEAKER;
-	AnimSeq.NumberOfFrames = 2;
-	AnimSeq.WhichSprite = Actor::SpritePosition(SPEAKER);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+	SpeakerSprite.SpriteSize = World::Instance->TileSize;
+	SpeakerSprite.NumberOfFrames = 2;
+	SpeakerSprite.AnimationDuration = 1.0f;
+	SpeakerSprite.WhichSprite = Actor::SpritePosition(SPEAKER);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, SpeakerSprite);
 	Draw(world, 0);
 
-	WhichSpriteInt = DESK_LEFT;
-	AnimSeq.WhichSprite = Actor::SpritePosition(DESK_LEFT);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+	FAnimSequence StairsSprite;
+	WhichSpriteInt = DOORSTAIRS;
+	StairsSprite.SpriteSize = World::Instance->TileSize;
+	StairsSprite.NumberOfFrames = 2;
+	StairsSprite.AnimationDuration = 1.0f;
+	StairsSprite.WhichSprite = Actor::SpritePosition(DOORSTAIRS);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, StairsSprite);
 	Draw(world, 0);
-
-	WhichSpriteInt = DESK_DECKS_RAB;
-	AnimSeq.WhichSprite = Actor::SpritePosition(DESK_DECKS_RAB);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
-	Draw(world, 0);
-
-	WhichSpriteInt = DESK_RIGHT;
-	AnimSeq.WhichSprite = Actor::SpritePosition(DESK_RIGHT);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
-	Draw(world, 0);
-
 }
 
 void Dungeon2::SetMap(int map[])
@@ -53,6 +49,7 @@ void Dungeon2::SetMap(int map[])
 
 void Dungeon2::InitDungeon(World* world)
 {
+	//Static Init ------------------------------------------------------------------------------
 	MapLayout = std::make_unique<int[]>(400);
 	int D2Map[400] = {
 		5 , 5 , 0 , 5 , 5 , 5 , 5 , 5 , 5  , 5 , 5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 ,
@@ -64,12 +61,12 @@ void Dungeon2::InitDungeon(World* world)
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
+		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
+		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
+		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
+		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
@@ -78,7 +75,26 @@ void Dungeon2::InitDungeon(World* world)
 	};
 	SetMap(D2Map);
 
-	Actor** Dungeon2Actors = new Actor * [15];
+	/*FAnimSequence WoodSprite;
+	WhichSpriteInt = WOOD;
+	WoodSprite.SpriteSize = World::Instance->TileSize;
+	WoodSprite.NumberOfFrames = 2;
+	WoodSprite.AnimationDuration = 1.0f;
+	WoodSprite.WhichSprite = Actor::SpritePosition(WOOD);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, WoodSprite);
+	Draw(world, 0);
+
+	FAnimSequence SpeakerSprite;
+	WhichSpriteInt = SPEAKER;
+	SpeakerSprite.SpriteSize = World::Instance->TileSize;
+	SpeakerSprite.NumberOfFrames = 2;
+	SpeakerSprite.AnimationDuration = 1.0f;
+	SpeakerSprite.WhichSprite = Actor::SpritePosition(SPEAKER);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, SpeakerSprite);
+	Draw(world, 0);*/
+	//Static Init Fin -----------------------------------------------------------------------------------------
+
+	Actor** Dungeon2Actors = new Actor * [14];
 
 	Dungeon2Actors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
 	Dungeon2Actors[1] = new Enemy(120, 100, World::Instance->PlayerPtr);
@@ -88,15 +104,14 @@ void Dungeon2::InitDungeon(World* world)
 	Dungeon2Actors[5] = new Wood(11, 16);
 	Dungeon2Actors[6] = new Wood(11, 17);
 	Dungeon2Actors[7] = new Wood(11, 18);
-	Dungeon2Actors[8] = new Wood(12, 14);
-	Dungeon2Actors[9] = new Wood(13, 14);
-	Dungeon2Actors[10] = new Wood(16, 14);
-	Dungeon2Actors[11] = new Wood(17, 14);
-	Dungeon2Actors[12] = new Wood(18, 14);
-	Dungeon2Actors[13] = new Door(0, 2);
-	Dungeon2Actors[14] = new Mushroom(5, 8);
+	Dungeon2Actors[8] = new Wood(11, 13);
+	Dungeon2Actors[9] = new Wood(11, 12);
+	Dungeon2Actors[10] = new Door(0, 2);
+	Dungeon2Actors[11] = new Mushroom(8, 3);
+	Dungeon2Actors[12] = new Enemy(50, 160, World::Instance->PlayerPtr);
+	Dungeon2Actors[13] = new Enemy(70, 140, World::Instance->PlayerPtr);
 
-	for (size_t D1Actors = 0; D1Actors < 15; D1Actors++)
+	for (size_t D1Actors = 0; D1Actors < 14; D1Actors++)
 	{
 		world->Actors.AddElement(Dungeon2Actors[D1Actors]);
 	}

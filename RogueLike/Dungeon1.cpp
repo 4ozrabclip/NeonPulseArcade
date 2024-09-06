@@ -11,35 +11,50 @@ Dungeon1::Dungeon1()
 }
 void Dungeon1::DrawRoom(World* world)
 {
-	AnimSeq.NumberOfFrames = 2;
-	AnimSeq.SpriteSize = world->TileSize;
-	AnimSeq.AnimationDuration = 1.0f;
-
+	FAnimSequence BrickSprite;
+	BrickSprite.NumberOfFrames = 2;
+	BrickSprite.SpriteSize = world->TileSize;
+	BrickSprite.AnimationDuration = 1.0f;
 	WhichSpriteInt = BRICKS;
-	AnimSeq.WhichSprite = Actor::SpritePosition(BRICKS);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+	BrickSprite.WhichSprite = Actor::SpritePosition(BRICKS);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, BrickSprite);
 	Draw(world, 0);
 
+	FAnimSequence SpeakerSprite;
+	SpeakerSprite.NumberOfFrames = 2;
+	SpeakerSprite.SpriteSize = world->TileSize;
+	SpeakerSprite.AnimationDuration = 1.0f;
 	WhichSpriteInt = SPEAKER;
-	AnimSeq.NumberOfFrames = 2;
-	AnimSeq.WhichSprite = Actor::SpritePosition(SPEAKER);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+	SpeakerSprite.WhichSprite = Actor::SpritePosition(SPEAKER);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, SpeakerSprite);
 	Draw(world, 0);
 
+	FAnimSequence DeskLeftSprite;
+	DeskLeftSprite.NumberOfFrames = 2;
+	DeskLeftSprite.SpriteSize = world->TileSize;
+	DeskLeftSprite.AnimationDuration = 1.0f;
 	WhichSpriteInt = DESK_LEFT;
-	AnimSeq.WhichSprite = Actor::SpritePosition(DESK_LEFT);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+	DeskLeftSprite.WhichSprite = Actor::SpritePosition(DESK_LEFT);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, DeskLeftSprite);
 	Draw(world, 0);
-
+	FAnimSequence DeskDecksRabSprite;
+	DeskDecksRabSprite.NumberOfFrames = 2;
+	DeskDecksRabSprite.SpriteSize = world->TileSize;
+	DeskDecksRabSprite.AnimationDuration = 1.0f;
 	WhichSpriteInt = DESK_DECKS_RAB;
-	AnimSeq.WhichSprite = Actor::SpritePosition(DESK_DECKS_RAB);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+	DeskDecksRabSprite.WhichSprite = Actor::SpritePosition(DESK_DECKS_RAB);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, DeskDecksRabSprite);
 	Draw(world, 0);
 
+	FAnimSequence DeskRightSprite;
+	DeskRightSprite.NumberOfFrames = 2;
+	DeskRightSprite.SpriteSize = world->TileSize;
+	DeskRightSprite.AnimationDuration = 1.0f;
 	WhichSpriteInt = DESK_RIGHT;
-	AnimSeq.WhichSprite = Actor::SpritePosition(DESK_RIGHT);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
+	DeskRightSprite.WhichSprite = Actor::SpritePosition(DESK_RIGHT);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, DeskRightSprite);
 	Draw(world, 0);
+
 
 }
 void Dungeon1::SetMap(int map[])
@@ -49,7 +64,8 @@ void Dungeon1::SetMap(int map[])
 
 void Dungeon1::InitDungeon(World* world)
 {
-
+	//Static Init-------------------------------------------------------------------
+	MapLayout = std::make_unique<int[]>(400);
 	int D1Map[400] = {
 		1 , 1  ,1 , 1 , 1 , 1 , 1 , 1 , 1  , 1 , 1 , 1  ,1 , 1 , 1 , 1 , 1 , 1 , 1  , 1 ,
 		1 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  1 ,
@@ -74,7 +90,51 @@ void Dungeon1::InitDungeon(World* world)
 	};
 
 	SetMap(D1Map);
+	/*FAnimSequence BrickSprite;
+	BrickSprite.NumberOfFrames = 2;
+	BrickSprite.SpriteSize = world->TileSize;
+	BrickSprite.AnimationDuration = 1.0f;
+	WhichSpriteInt = BRICKS;
+	BrickSprite.WhichSprite = Actor::SpritePosition(BRICKS);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, BrickSprite);
+	Draw(world, 0);
 
+	FAnimSequence SpeakerSprite;
+	SpeakerSprite.NumberOfFrames = 2;
+	SpeakerSprite.SpriteSize = world->TileSize;
+	SpeakerSprite.AnimationDuration = 1.0f;
+	WhichSpriteInt = SPEAKER;
+	SpeakerSprite.WhichSprite = Actor::SpritePosition(SPEAKER);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, SpeakerSprite);
+	Draw(world, 0);
+
+	FAnimSequence DeskLeftSprite;
+	DeskLeftSprite.NumberOfFrames = 2;
+	DeskLeftSprite.SpriteSize = world->TileSize;
+	DeskLeftSprite.AnimationDuration = 1.0f;
+	WhichSpriteInt = DESK_LEFT;
+	DeskLeftSprite.WhichSprite = Actor::SpritePosition(DESK_LEFT);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, DeskLeftSprite);
+	Draw(world, 0);
+	FAnimSequence DeskDecksRabSprite;
+	DeskDecksRabSprite.NumberOfFrames = 2;
+	DeskDecksRabSprite.SpriteSize = world->TileSize;
+	DeskDecksRabSprite.AnimationDuration = 1.0f;
+	WhichSpriteInt = DESK_DECKS_RAB;
+	DeskDecksRabSprite.WhichSprite = Actor::SpritePosition(DESK_DECKS_RAB);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, DeskDecksRabSprite);
+	Draw(world, 0);
+
+	FAnimSequence DeskRightSprite;
+	DeskRightSprite.NumberOfFrames = 2;
+	DeskRightSprite.SpriteSize = world->TileSize;
+	DeskRightSprite.AnimationDuration = 1.0f;
+	WhichSpriteInt = DESK_RIGHT;
+	DeskRightSprite.WhichSprite = Actor::SpritePosition(DESK_RIGHT);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, DeskRightSprite);
+	Draw(world, 0);*/
+
+	//Static Init Fin---------------------------------------------------------------
 	Actor** Dungeon1Actors = new Actor * [15];
 
 	Dungeon1Actors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);

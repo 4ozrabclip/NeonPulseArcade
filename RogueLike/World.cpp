@@ -69,8 +69,6 @@ bool World::OnUserCreate()
 }
 bool World::OnUserUpdate(float fElapsedTime)
 {
-
-
 	size_t ArraySize = Actors.Num();
 	const olc::Pixel ClearPixel;
 	Clear(ClearPixel);
@@ -82,12 +80,17 @@ bool World::OnUserUpdate(float fElapsedTime)
 		Dungeons.GetElement(Level)->InitDungeon(Instance);
 		Flag = false;
 	}
-		Dungeons.GetElement(Level)->Update(Instance, fElapsedTime);
+	Dungeons.GetElement(Level)->Update(Instance, fElapsedTime);
+
+
 
 	for (int i = 0; i < ArraySize; ++i)
 	{
 		Actors.GetElement(i)->Update(Instance, fElapsedTime);
 	}
+
+
+
 
 	PlayerPtr->Update(Instance, fElapsedTime);
 	if (LevelSwitchFlag)

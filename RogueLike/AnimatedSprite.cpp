@@ -1,5 +1,6 @@
 #include "AnimatedSprite.h"
 #include "World.h"
+#include "Player.h"
 
 
 AnimatedSprite::AnimatedSprite(std::shared_ptr<olc::Sprite> sprite, EAnimationType animType, const FAnimSequence& animSequence) : Tileset(sprite), AnimationType(animType), AnimSequence(animSequence), ElapsedTime(0.0f)
@@ -42,7 +43,7 @@ void AnimatedSprite::DrawAt(float fElapsedTime, olc::vi2d InScreenPosition)
     World* pWorld = World::Instance;
     if (pWorld)
     {
-        pWorld->DrawPartialSprite(InScreenPosition, Tileset.get(), sourcePos, AnimSequence.SpriteSize);
+        pWorld->DrawPartialSprite(InScreenPosition, Tileset.get(), sourcePos, AnimSequence.SpriteSize, 1U, 0U);
     }
 }
 

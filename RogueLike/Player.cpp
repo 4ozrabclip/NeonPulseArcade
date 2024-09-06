@@ -23,7 +23,7 @@ Player::Player(int x, int y)
     }
 
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
-
+    FacingLeft = false;
 }
 Player::~Player()
 {
@@ -40,6 +40,7 @@ void Player::Update(World* World, float fElapsedTime)
 
 void Player::Move(float fElapsedTime)
 {
+
     float x = 0, y = 0;
 
     if (World::Instance->GetKey(olc::Key::LEFT).bPressed ||
@@ -51,11 +52,13 @@ void Player::Move(float fElapsedTime)
     }
     if (World::Instance->GetKey(olc::Key::LEFT).bHeld)
     {
+        FacingLeft = true;
         //if (RectangleCollision())
         x -= MoveSpeed * fElapsedTime;
     }
     if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
     {
+        FacingLeft = false;
         x += MoveSpeed * fElapsedTime;
     }
     if (World::Instance->GetKey(olc::Key::UP).bHeld)
