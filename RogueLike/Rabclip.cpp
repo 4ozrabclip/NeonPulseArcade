@@ -10,25 +10,22 @@ Rabclip::Rabclip(int x, int y)
     AnimSeq.NumberOfFrames = 3;
     AnimSeq.SpriteSize = World::Instance->TileSize;
     AnimSeq.AnimationDuration = 1.0f;
-    moveSpeed = 1.0f;
-    moveRange = 2.0f;
-    moveDirection = 1.0f;
-    moveTimeAccumulator = 0.0f;
+
+    StartPosition = this->Pos.coords.x;
+    WalkSpeed = 0.01f;
+
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, AnimSeq);
 }
 
 void Rabclip::Move(float fElapsedTime)
 {
 
-    moveTimeAccumulator += fElapsedTime;
+    Pos.coords.x += WalkSpeed;
 
-    float movementOffset = moveRange * std::sin(moveTimeAccumulator * moveSpeed);
-
-    Pos.coords.x += movementOffset * moveDirection;
-
-    if (movementOffset >= moveRange || movementOffset <= -moveRange) {
-        moveDirection *= -1;
-    }
+        if (Pos.coords.x >= StartPosition + 10 || Pos.coords.x <= StartPosition - 10)
+        {
+            WalkSpeed *= -1;
+        }
 }
 
 void Rabclip::Update(World* world, float fElapsedTime)

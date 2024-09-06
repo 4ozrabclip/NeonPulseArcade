@@ -53,7 +53,6 @@ void Player::Move(float fElapsedTime)
     if (World::Instance->GetKey(olc::Key::LEFT).bHeld)
     {
         FacingLeft = true;
-        //if (RectangleCollision())
         x -= MoveSpeed * fElapsedTime;
     }
     if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
@@ -83,8 +82,6 @@ void Player::SetXY(float InX, float InY)
 {
     Pos.coords.x += InX;
     Pos.coords.y += InY;
-
-
 }
 
 olc::vi2d Player::GetXY()

@@ -8,9 +8,7 @@ public:
 	virtual void Update(World* world, float fElapsedTime) override;
 
 private:
-	float moveSpeed; 
-	float moveRange; 
-	float moveDirection; 
-	float moveTimeAccumulator;
+	float StartPosition; 
+	float WalkSpeed;
 };
 
