@@ -158,5 +158,7 @@ void Dungeon1::InitDungeon(World* world)
 		world->Actors.AddElement(Dungeon1Actors[D1Actors]);
 	}
 	delete[] Dungeon1Actors;
+	PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
+
 	//DrawRoom(world);
 }

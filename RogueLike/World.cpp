@@ -6,6 +6,7 @@
 #include "AnimatedSprite.h"
 #include "Dungeon1.h"
 #include "Dungeon2.h"
+#include "Dungeon3.h"
 
 #include <windows.h>
 #include <stdlib.h>
@@ -52,16 +53,17 @@ olc::vi2d World::GetBarriers()
 
 bool World::OnUserCreate()
 {
-	//PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
 
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
 	PlayerPtr = new Player(20, 20);
 	Map** DungeonPtrs = new Map * [3];
 	DungeonPtrs[0] = new Dungeon1();
 	DungeonPtrs[1] = new Dungeon2();
+	DungeonPtrs[2] = new Dungeon3();
 	
 	Dungeons.AddElement(DungeonPtrs[0]);
 	Dungeons.AddElement(DungeonPtrs[1]);
+	Dungeons.AddElement(DungeonPtrs[2]);
 
 	delete[] DungeonPtrs;
 	Flag = true;
@@ -82,14 +84,10 @@ bool World::OnUserUpdate(float fElapsedTime)
 	}
 	Dungeons.GetElement(Level)->Update(Instance, fElapsedTime);
 
-
-
 	for (int i = 0; i < ArraySize; ++i)
 	{
 		Actors.GetElement(i)->Update(Instance, fElapsedTime);
 	}
-
-
 
 
 	PlayerPtr->Update(Instance, fElapsedTime);

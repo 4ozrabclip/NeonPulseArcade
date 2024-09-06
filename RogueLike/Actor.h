@@ -22,7 +22,16 @@ enum InitialSprite {
 	DESK_RIGHT,
 	DOORSTAIRS,
 	PILL = 13,
-	MUSHROOM
+	MUSHROOM,
+	APATHETIC,
+	RABCLIP_SWORD,
+	FERG_SWORD,
+	APATHETIC_SWORD,
+	SWORD,
+	RABCLIP_SING,
+	DESK_LEFT_GREY,
+	DESK_DECKS_APA,
+	DESK_RIGHT_GREY
 };
 struct FCoords {
 	TVector2D<float> coords;
@@ -49,5 +58,4 @@ protected:
 	FAnimSequence AnimSeq;
 	std::shared_ptr<AnimatedSprite> AnimatedSpritePtr;
 	std::shared_ptr<olc::Sprite> Tileset;
-
 };

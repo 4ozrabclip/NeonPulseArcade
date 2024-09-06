@@ -5,6 +5,7 @@
 #include "Pill.h"
 #include "Mushroom.h"
 #include "Door.h"
+#include "Door2.h"
 #include "Enemy.h"
 
 Dungeon2::Dungeon2()
@@ -106,7 +107,7 @@ void Dungeon2::InitDungeon(World* world)
 	Dungeon2Actors[7] = new Wood(11, 18);
 	Dungeon2Actors[8] = new Wood(11, 13);
 	Dungeon2Actors[9] = new Wood(11, 12);
-	Dungeon2Actors[10] = new Door(0, 2);
+	Dungeon2Actors[10] = new Door2(0, 2);
 	Dungeon2Actors[11] = new Mushroom(8, 3);
 	Dungeon2Actors[12] = new Enemy(50, 160, World::Instance->PlayerPtr);
 	Dungeon2Actors[13] = new Enemy(70, 140, World::Instance->PlayerPtr);
@@ -117,5 +118,7 @@ void Dungeon2::InitDungeon(World* world)
 	}
 
 	delete[] Dungeon2Actors;
+	PlaySound(TEXT("pcdopamine.wav"), 0, SND_FILENAME | SND_ASYNC);
+
 	//DrawRoom(world);
 }

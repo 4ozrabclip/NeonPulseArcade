@@ -25,10 +25,10 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
         return olc::vi2d(0, 1) 
             * World::Instance->TileSize;
     case RABCLIP:
-        return olc::vi2d(16, 2) 
+        return olc::vi2d(16, 4) 
             * World::Instance->TileSize;
     case FERG:
-        return olc::vi2d(2, 16) 
+        return olc::vi2d(16, 0) 
             * World::Instance->TileSize;
     case WOOD:
         return olc::vi2d(0, 3)
@@ -59,6 +59,33 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
             * World::Instance->TileSize;
     case MUSHROOM:
         return olc::vi2d(14, 0)
+            * World::Instance->TileSize;
+    case RABCLIP_SWORD:
+        return olc::vi2d(16, 5)
+            * World::Instance->TileSize;
+    case FERG_SWORD:
+        return olc::vi2d(16, 1)
+            * World::Instance->TileSize;
+    case APATHETIC:
+        return olc::vi2d(16, 2)
+            * World::Instance->TileSize;
+    case APATHETIC_SWORD:
+        return olc::vi2d(16, 3)
+            * World::Instance->TileSize;
+    case SWORD:
+        return olc::vi2d(13, 3)
+            * World::Instance->TileSize;
+    case RABCLIP_SING:
+        return olc::vi2d(20, 4)
+            * World::Instance->TileSize;
+    case DESK_LEFT_GREY:
+        return olc::vi2d(8, 4)
+            * World::Instance->TileSize;
+    case DESK_DECKS_APA:
+        return olc::vi2d(9, 4)
+            * World::Instance->TileSize;
+    case DESK_RIGHT_GREY:
+        return olc::vi2d(10, 4)
             * World::Instance->TileSize;
     default:
         return olc::vi2d(-1, -1); 

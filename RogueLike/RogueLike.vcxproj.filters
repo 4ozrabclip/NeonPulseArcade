@@ -28,9 +28,6 @@
     <Filter Include="Header Files\Actors\Items">
       <UniqueIdentifier>{4bc9f5b7-aaee-45de-89a2-b6d190570139}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Actors\Environment">
-      <UniqueIdentifier>{94663bb5-6a4c-4a0f-8388-8b51663a96d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Actors">
       <UniqueIdentifier>{baf46626-9f16-4346-bb49-642f3dc0699a}</UniqueIdentifier>
     </Filter>
@@ -42,6 +39,9 @@
     </Filter>
     <Filter Include="Source Files\Actors\Characters">
       <UniqueIdentifier>{f60e6f1e-53ca-4e7e-a8ee-c12d61ef522e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actors\Environment">
+      <UniqueIdentifier>{94663bb5-6a4c-4a0f-8388-8b51663a96d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +93,21 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Source Files\Actors</Filter>
     </ClCompile>
+    <ClCompile Include="Dungeon2.cpp">
+      <Filter>Source Files\Actors\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon3.cpp">
+      <Filter>Source Files\Actors\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Door2.cpp">
+      <Filter>Source Files\Actors\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Rabclip.cpp">
+      <Filter>Source Files\Actors\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>Source Files\Actors\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="planning.md" />
@@ -136,6 +151,21 @@
     </ClInclude>
     <ClInclude Include="Actor.h">
       <Filter>Header Files\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon2.h">
+      <Filter>Header Files\Actors\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon3.h">
+      <Filter>Header Files\Actors\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Door2.h">
+      <Filter>Header Files\Actors\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Rabclip.h">
+      <Filter>Header Files\Actors\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mushroom.h">
+      <Filter>Header Files\Actors\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
