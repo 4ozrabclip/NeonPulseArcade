@@ -32,8 +32,10 @@ Player::~Player()
 void Player::Update(World* World, float fElapsedTime)
 {
     Move(fElapsedTime);
-    Draw(World::Instance, fElapsedTime);
+    Draw(World, fElapsedTime);
     PushBackCollision({ 228,228 }, { 0, 0 });
+
+
 }
 
 void Player::Move(float fElapsedTime)
@@ -49,6 +51,7 @@ void Player::Move(float fElapsedTime)
     }
     if (World::Instance->GetKey(olc::Key::LEFT).bHeld)
     {
+        //if (RectangleCollision())
         x -= MoveSpeed * fElapsedTime;
     }
     if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)

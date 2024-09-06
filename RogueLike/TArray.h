@@ -36,7 +36,7 @@ public:
 	{
 		return Size;
 	}
-	void RemoveElement(int Index)  //Move everything across
+	void RemoveElement(int Index)  //Need to move everything across
 	{
 		delete Data[Index];
 		Size--;
@@ -62,7 +62,7 @@ private:
 	{
 		T* NewData = new T[NewCapacity];
 
-		for (int DataIndex = 0; DataIndex < (Size < NewCapacity) ? Size : NewCapacity; ++DataIndex)
+		for (int DataIndex = 0; DataIndex < Size; ++DataIndex)
 		{
 			NewData[DataIndex] = Data[DataIndex];
 		}

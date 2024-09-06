@@ -57,6 +57,9 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
     case DOORSTAIRS:
         return olc::vi2d(0, 2)
             * World::Instance->TileSize;
+    case MUSHROOM:
+        return olc::vi2d(14, 0)
+            * World::Instance->TileSize;
     default:
         return olc::vi2d(-1, -1); 
     }

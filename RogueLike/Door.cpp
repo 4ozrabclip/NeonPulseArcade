@@ -15,6 +15,7 @@ Door::Door(int x, int y)
 
 void Door::Update(World* world, float fElapsedTime)
 {
+    Draw(world, fElapsedTime);
     if (PlayerPtr->RectangleCollision(Pos.coords))
     {
         bItemTaken = true;
@@ -25,9 +26,9 @@ void Door::Update(World* world, float fElapsedTime)
         AnimSeq.WhichSprite = Actor::SpritePosition(DOORSTAIRS);
         AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
         Draw(world, fElapsedTime);
-        //ItemEffect();
+
+        World::Instance->LevelSwitch(true, 1);
     }
-    Draw(world, fElapsedTime);
 }
 
 void Door::ItemEffect()

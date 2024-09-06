@@ -36,5 +36,20 @@ void Map::Draw(World* World, float fElapsedTime) const
 
 void Map::SetMap(int map[])
 {
-    std::copy(map, map + 400, MapLayout.get());
+    std::copy(map, map + 400, Map::MapLayout.get());
+}
+
+void Map::DrawRoom(World* world)
+{
+}
+
+void Map::Update(World* World, float fElapsedTime)
+{
+    DrawRoom(World);
+
+}
+
+void Map::InitDungeon(World* world)
+{
+    MapLayout = std::make_unique<int[]>(400);
 }

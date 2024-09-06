@@ -22,6 +22,7 @@ enum InitialSprite {
 	DESK_RIGHT,
 	DOORSTAIRS,
 	PILL = 13,
+	MUSHROOM
 };
 struct FCoords {
 	TVector2D<float> coords;

@@ -1,11 +1,11 @@
-#include "Pill.h"
+#include "Mushroom.h"
 #include "World.h"
 
-Pill::Pill(int x, int y)
+Mushroom::Mushroom(int x, int y)
 {
     this->Pos.coords.x = x * 12;
     this->Pos.coords.y = y * 12;
-    AnimSeq.WhichSprite = Actor::SpritePosition(PILL);
+    AnimSeq.WhichSprite = Actor::SpritePosition(MUSHROOM);
     AnimSeq.NumberOfFrames = 2;
     AnimSeq.SpriteSize = World::Instance->TileSize;
     AnimSeq.AnimationDuration = 1.0f;
@@ -13,8 +13,9 @@ Pill::Pill(int x, int y)
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
 }
 
-void Pill::ItemEffect()
+void Mushroom::ItemEffect()
 {
-    PlayerPtr->SetMoveSpeed(200);
+
+    PlayerPtr->SetMoveSpeed(50);
     //PlayerPtr->SetAnimSeq(PlayerFastWalk);
 }
