@@ -14,7 +14,7 @@
 Dungeon3::Dungeon3()
 {
 	MapLayout = std::make_unique<int[]>(400);
-	World::Instance->PlayerPtr->SetHasKey(false);
+
 }
 void Dungeon3::DrawRoom(World* world)
 {
@@ -79,6 +79,7 @@ void Dungeon3::SetMap(int map[])
 
 void Dungeon3::InitDungeon(World* world)
 {
+	World::Instance->PlayerPtr->SetHasKey(false);
 	//Static Init-------------------------------------------------------------------
 	MapLayout = std::make_unique<int[]>(400);
 	int D1Map[400] = {
@@ -101,7 +102,7 @@ void Dungeon3::InitDungeon(World* world)
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 , 5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 ,
+		5 , 5  ,5 , 5 , 5 , 5 , 5 , 0 , 5  , 5 , 5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 ,
 	};
 
 	SetMap(D1Map);
