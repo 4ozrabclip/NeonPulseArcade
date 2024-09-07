@@ -24,6 +24,7 @@ Player::Player(int x, int y)
 
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
     FacingLeft = false;
+    HoldingWeapon = false;
 }
 Player::~Player()
 {
@@ -34,8 +35,13 @@ void Player::Update(World* World, float fElapsedTime)
     Move(fElapsedTime);
     Draw(World, fElapsedTime);
     PushBackCollision({ 228,228 }, { 0, 0 });
-
-
+    if (HoldingWeapon)
+    {
+        AnimSeq.WhichSprite = Actor::SpritePosition(RABCLIP_SWORD);
+    }
+    else {
+        AnimSeq.WhichSprite = Actor::SpritePosition(RABCLIP);
+    }
 }
 
 void Player::Move(float fElapsedTime)
@@ -97,4 +103,14 @@ void Player::SetMoveSpeed(int InMoveSpeed)
 int Player::GetMoveSpeed()
 {
     return MoveSpeed;
+}
+
+void Player::SetWeapon(bool bHoldingWeapon)
+{
+    HoldingWeapon = bHoldingWeapon;
+}
+
+bool Player::GetWeapon()
+{
+    return HoldingWeapon;
 }

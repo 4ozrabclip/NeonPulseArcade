@@ -24,6 +24,7 @@ void Wood::Update(World* world, float fElapsedTime)
 
     if (PlayerPtr->RectangleCollision(Pos.coords))
     {
+        
         World::Instance->DrawRect(olc::vf2d(Pos.coords.x, Pos.coords.y), AnimSeq.SpriteSize, olc::YELLOW);
     }
 

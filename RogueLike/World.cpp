@@ -53,7 +53,6 @@ olc::vi2d World::GetBarriers()
 
 bool World::OnUserCreate()
 {
-
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
 	PlayerPtr = new Player(20, 20);
 	Map** DungeonPtrs = new Map * [3];
@@ -76,7 +75,6 @@ bool World::OnUserUpdate(float fElapsedTime)
 	Clear(ClearPixel);
 	SetPixelMode(olc::Pixel::MASK);
 
-
 	if (Flag)
 	{
 		Dungeons.GetElement(Level)->InitDungeon(Instance);
@@ -88,7 +86,6 @@ bool World::OnUserUpdate(float fElapsedTime)
 	{
 		Actors.GetElement(i)->Update(Instance, fElapsedTime);
 	}
-
 
 	PlayerPtr->Update(Instance, fElapsedTime);
 	if (LevelSwitchFlag)

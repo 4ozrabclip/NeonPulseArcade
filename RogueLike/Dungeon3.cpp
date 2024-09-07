@@ -7,6 +7,7 @@
 #include "Door.h"
 #include "Enemy.h"
 #include "Rabclip.h"
+#include "Sythe.h"
 Dungeon3::Dungeon3()
 {
 	MapLayout = std::make_unique<int[]>(400);
@@ -161,7 +162,7 @@ void Dungeon3::InitDungeon(World* world)
 	Dungeon3Actors[11] = new Wood(17, 14);
 	Dungeon3Actors[12] = new Wood(18, 14);
 	Dungeon3Actors[13] = new Door(19, 17);
-	Dungeon3Actors[14] = new Pill(5, 8);
+	Dungeon3Actors[14] = new Sythe(5, 8);
 	Dungeon3Actors[15] = new Rabclip(10, 1);
 
 	for (size_t D1Actors = 0; D1Actors < 16; D1Actors++)

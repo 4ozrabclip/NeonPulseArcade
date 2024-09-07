@@ -16,7 +16,10 @@ public:
 	virtual olc::vi2d GetXY();
 	virtual void SetMoveSpeed(int InMoveSpeed);
 	virtual int GetMoveSpeed();
+	void SetWeapon(bool HoldingWeapon);
+	bool GetWeapon();
 	bool FacingLeft;
+	bool HoldingWeapon;
 
 protected:
 	float fPlayer_ElapsedTime;
