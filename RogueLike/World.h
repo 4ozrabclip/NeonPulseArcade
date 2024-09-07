@@ -39,11 +39,16 @@ public:
 
 	void LevelSwitch(bool bSwitch, int InLevel);
 
+	int GetActorIndex();
+
 	bool Flag;
+
 
 	int Level;
 
 private:
+	int ActorIndex;
+
 	int EnemyMax;
 	olc::vi2d Barriers;
 	FMapCoordinates MapCoords;

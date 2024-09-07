@@ -4,6 +4,7 @@
 #include <random>
 #include <cmath>
 #include "Player.h"
+#include "Actor.h"
 
 Enemy::Enemy(int x, int y, Player* InPlayerPtr)
 {
@@ -25,16 +26,11 @@ Enemy::~Enemy()
 void Enemy::Update(World* world, float fElapsedTime)
 {
     //olc::vi2d position(Pos.coords.x, Pos.coords.y);
-
+    ReceivePain();
     fEnemy_ElapsedTime += fElapsedTime;
     Move(fElapsedTime);
-    //if (fEnemy_ElapsedTime >= 0.1) {
-
-    //    fEnemy_ElapsedTime = 0;
-    //}
     Draw(world, fElapsedTime);
-    PushBackCollision({ 228,228 }, { 0, 0 });
-
+    PushBackCollision({ 220,220 }, { 10, 10 });
 }
 void Enemy::Move(float fElapsedTime)
 {
@@ -42,7 +38,6 @@ void Enemy::Move(float fElapsedTime)
     int TargetY = PlayerPtr->GetXY().y;
 
     TVector2D<float> DToTarget = { TargetX - Pos.coords.x, TargetY - Pos.coords.y };
-
 
     float Distance = std::sqrt(DToTarget.x * DToTarget.x + DToTarget.y * DToTarget.y);
 
@@ -62,8 +57,17 @@ void Enemy::Move(float fElapsedTime)
     float MoveSpeed = 1000.0f;
     Pos.coords.x += DToTarget.x * 10 * fElapsedTime;
     Pos.coords.y += DToTarget.y * 10 * fElapsedTime;
+}
 
-
+void Enemy::ReceivePain()
+{
+    int Index;
+    if (PlayerPtr->GetWeapon() && RectangleCollision(PlayerPtr->Pos.coords))
+    {
+        Index = World::Instance->GetActorIndex();
+        World::Instance->Actors.RemoveElement(Index);
+        World::Instance->DrawRect(olc::vf2d(Pos.coords.x, Pos.coords.y), AnimSeq.SpriteSize, olc::RED);
+    }
 }
 
 bool Enemy::HasCollided()

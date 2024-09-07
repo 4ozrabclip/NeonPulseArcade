@@ -112,6 +112,10 @@ bool Actor::RectangleCollision(TVector2D<float> r) const
     return (this->Pos.coords.x < r.x + 12 && this->Pos.coords.x + 12 > r.x
         && this->Pos.coords.y < r.y + 12 && this->Pos.coords.y + 12 > r.y);
 }
+int Actor::GetIndex()
+{
+    return 0;
+}
 void Actor::SetAnimatedSprite(std::shared_ptr<AnimatedSprite> AnimatedSprite)
 {
     AnimatedSpritePtr = AnimatedSprite;

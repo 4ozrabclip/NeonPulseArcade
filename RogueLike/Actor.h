@@ -54,6 +54,9 @@ public:
 	//virtual void SetAnimSeq(FAnimSequence InAnimSeq);
 	bool RectangleCollision(TVector2D<float> r) const;
 	FCoords Pos;
+
+	int GetIndex();
+
 protected:
 	FAnimSequence AnimSeq;
 	std::shared_ptr<AnimatedSprite> AnimatedSpritePtr;

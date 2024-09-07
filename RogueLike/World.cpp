@@ -26,10 +26,9 @@ World::World()
 
 World::~World()
 {
-	for (int i = 0; i < 15; ++i)
+	for (ActorIndex = 0; ActorIndex < Actors.Num(); ++ActorIndex)
 	{
-		Actors.RemoveElement(i);
-
+		Actors.RemoveElement(ActorIndex);
 	}
 	delete PlayerPtr;
 
@@ -82,11 +81,13 @@ bool World::OnUserUpdate(float fElapsedTime)
 	}
 	Dungeons.GetElement(Level)->Update(Instance, fElapsedTime);
 
-	for (int i = 0; i < ArraySize; ++i)
+	for (ActorIndex = 0; ActorIndex < ArraySize; ++ActorIndex)
 	{
-		Actors.GetElement(i)->Update(Instance, fElapsedTime);
+		if (Actors.GetElement(ActorIndex))
+		{
+			Actors.GetElement(ActorIndex)->Update(Instance, fElapsedTime);
+		}
 	}
-
 	PlayerPtr->Update(Instance, fElapsedTime);
 	if (LevelSwitchFlag)
 	{
@@ -103,9 +104,9 @@ bool World::OnUserDestroy()
 void World::ClearMapActors()
 {
 	size_t ArraySize = Actors.Num();
-	for (size_t D1Actors = 0; D1Actors < ArraySize; D1Actors++)
+	for (ActorIndex = 0; ActorIndex < ArraySize; ActorIndex++)
 	{
-		World::Instance->Actors.RemoveElement(D1Actors);
+		World::Instance->Actors.RemoveElement(ActorIndex);
 	}
 }
 
@@ -118,4 +119,9 @@ void World::LevelSwitch(bool bSwitch, int InLevel)
 {
 	LevelSwitchFlag = bSwitch;
 	Level = InLevel;
+}
+
+int World::GetActorIndex()
+{
+	return ActorIndex;
 }

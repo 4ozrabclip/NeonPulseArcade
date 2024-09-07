@@ -10,9 +10,9 @@ public:
 
 	virtual void Update(World* world, float fElapsedTime) override;
 	virtual void Move(float fElapsedTime) override;
-	
+	virtual void ReceivePain();
 	virtual bool HasCollided();
-
+	
 protected:
 	float fEnemy_ElapsedTime;
 

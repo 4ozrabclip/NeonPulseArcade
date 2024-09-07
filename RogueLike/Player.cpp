@@ -34,7 +34,7 @@ void Player::Update(World* World, float fElapsedTime)
 {
     Move(fElapsedTime);
     Draw(World, fElapsedTime);
-    PushBackCollision({ 228,228 }, { 0, 0 });
+    PushBackCollision({ 228-10,228-10 }, { 10, 10 });
     if (HoldingWeapon)
     {
         AnimSeq.WhichSprite = Actor::SpritePosition(RABCLIP_SWORD);
@@ -58,20 +58,24 @@ void Player::Move(float fElapsedTime)
     }
     if (World::Instance->GetKey(olc::Key::LEFT).bHeld)
     {
+        SetDirection(LEFT);
         FacingLeft = true;
         x -= MoveSpeed * fElapsedTime;
     }
-    if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
+    else if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
     {
+        SetDirection(RIGHT);
         FacingLeft = false;
         x += MoveSpeed * fElapsedTime;
     }
     if (World::Instance->GetKey(olc::Key::UP).bHeld)
     {
+        SetDirection(UP);
         y -= MoveSpeed * fElapsedTime;
     }
-    if (World::Instance->GetKey(olc::Key::DOWN).bHeld)
+    else if (World::Instance->GetKey(olc::Key::DOWN).bHeld)
     {
+        SetDirection(DOWN);
         y += MoveSpeed * fElapsedTime;
     }
     SetXY(x, y);
@@ -88,6 +92,16 @@ void Player::SetXY(float InX, float InY)
 {
     Pos.coords.x += InX;
     Pos.coords.y += InY;
+}
+
+void Player::SetDirection(MoveDirection dir)
+{
+    Direction = dir;
+}
+
+MoveDirection Player::GetDirection()
+{
+    return Direction; 
 }
 
 olc::vi2d Player::GetXY()
