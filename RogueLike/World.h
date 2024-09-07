@@ -25,8 +25,8 @@ public:
 	virtual bool OnUserCreate() override;
 	virtual bool OnUserUpdate(float fElapsedTime) override;
 	virtual bool OnUserDestroy() override;
-	virtual void ClearMapActors();
-	int GetNumCharacters();
+	void ClearAllActors();
+	void ClearDeadActors();
 
 	static World* Instance;
 
@@ -39,21 +39,23 @@ public:
 
 	void LevelSwitch(bool bSwitch, int InLevel);
 
+	void EnemyKilled(bool bEnemyKilled, int DeadEnemyIndex);
+
 	int GetActorIndex();
 
-	bool Flag;
-
+	bool NewLevelFlag;
 
 	int Level;
 
 private:
 	int ActorIndex;
-
+	bool bEnemyKilled;
+	int DeadEnemyIndex;
 	int EnemyMax;
 	olc::vi2d Barriers;
 	FMapCoordinates MapCoords;
 	//Enemy** EnemyPtrs = new Enemy * [EnemyMax];
-	bool LevelSwitchFlag;
+	bool EndLevelFLag;
 
 	Dungeon1* DungeonPtr;
 };

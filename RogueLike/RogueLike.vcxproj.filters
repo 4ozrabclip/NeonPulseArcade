@@ -111,6 +111,18 @@
     <ClCompile Include="Sythe.cpp">
       <Filter>Source Files\Actors\Items</Filter>
     </ClCompile>
+    <ClCompile Include="LockedGate.cpp">
+      <Filter>Source Files\Actors\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="LockedGateRight.cpp">
+      <Filter>Source Files\Actors\Environment</Filter>
+    </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>Source Files\Actors\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Door3.cpp">
+      <Filter>Source Files\Actors\Environment</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="planning.md" />
@@ -172,6 +184,18 @@
     </ClInclude>
     <ClInclude Include="Sythe.h">
       <Filter>Header Files\Actors\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="LockedGate.h">
+      <Filter>Header Files\Actors\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="LockedGateRight.h">
+      <Filter>Header Files\Actors\Environment</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Header Files\Actors\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Door3.h">
+      <Filter>Header Files\Actors\Environment</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

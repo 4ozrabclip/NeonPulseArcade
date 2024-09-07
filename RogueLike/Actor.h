@@ -31,7 +31,12 @@ enum InitialSprite {
 	RABCLIP_SING,
 	DESK_LEFT_GREY,
 	DESK_DECKS_APA,
-	DESK_RIGHT_GREY
+	DESK_RIGHT_GREY,
+	LOCKED_GATE_LEFT,
+	LOCKED_GATE_RIGHT,
+	OPEN_GATE_LEFT,
+	OPEN_GATE_RIGHT,
+	KEY
 };
 struct FCoords {
 	TVector2D<float> coords;
@@ -53,9 +58,9 @@ public:
 	virtual olc::vi2d GetXY();
 	//virtual void SetAnimSeq(FAnimSequence InAnimSeq);
 	bool RectangleCollision(TVector2D<float> r) const;
-	FCoords Pos;
-
 	int GetIndex();
+
+	FCoords Pos;
 
 protected:
 	FAnimSequence AnimSeq;

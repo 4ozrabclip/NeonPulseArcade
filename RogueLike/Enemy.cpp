@@ -26,11 +26,13 @@ Enemy::~Enemy()
 void Enemy::Update(World* world, float fElapsedTime)
 {
     //olc::vi2d position(Pos.coords.x, Pos.coords.y);
-    ReceivePain();
+
     fEnemy_ElapsedTime += fElapsedTime;
     Move(fElapsedTime);
     Draw(world, fElapsedTime);
-    PushBackCollision({ 220,220 }, { 10, 10 });
+    ReceivePain();
+    std::cout << "Actor Index: " << World::Instance->GetActorIndex() << std::endl;
+    BorderStopper({ 220,220 }, { 10, 10 });
 }
 void Enemy::Move(float fElapsedTime)
 {
@@ -47,7 +49,6 @@ void Enemy::Move(float fElapsedTime)
         DToTarget.y /= this->Pos.coords.Distance(PlayerPtr->Pos.coords);
     }
     else {
-
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> distr(-1, 1);
@@ -65,7 +66,9 @@ void Enemy::ReceivePain()
     if (PlayerPtr->GetWeapon() && RectangleCollision(PlayerPtr->Pos.coords))
     {
         Index = World::Instance->GetActorIndex();
-        World::Instance->Actors.RemoveElement(Index);
+        World::Instance->EnemyKilled(true, Index);
+
+        //World::Instance->Actors.RemoveElement(Index);
         World::Instance->DrawRect(olc::vf2d(Pos.coords.x, Pos.coords.y), AnimSeq.SpriteSize, olc::RED);
     }
 }
@@ -86,3 +89,4 @@ bool Enemy::HasCollided()
 
     return DistanceSquared <= 6;
 }
+

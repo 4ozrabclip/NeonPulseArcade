@@ -1196,7 +1196,7 @@ namespace olc
 			const float fDirX, const float fDirY, const float fDirZ,
 			const float fUpX = 0.0f, const float fUpY = 1.0f, const float fUpZ = 0.0f);
 
-		// 3D Rendering Flags
+		// 3D Rendering NewLevelFlags
 		void LW3D_EnableDepthTest(const bool bEnableDepth);
 		void LW3D_EnableBackfaceCulling(const bool bEnableCull);
 #endif

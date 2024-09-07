@@ -8,9 +8,13 @@
 #include "Enemy.h"
 #include "Rabclip.h"
 #include "Sythe.h"
+#include "LockedGate.h"
+#include "LockedGateRight.h"
+#include "Key.h"
 Dungeon3::Dungeon3()
 {
 	MapLayout = std::make_unique<int[]>(400);
+	World::Instance->PlayerPtr->SetHasKey(false);
 }
 void Dungeon3::DrawRoom(World* world)
 {
@@ -89,15 +93,15 @@ void Dungeon3::InitDungeon(World* world)
 		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 21, 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 22, 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 23, 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  5,  5,  5,  5 ,  5 ,
-		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  5 ,
+		5 , 23, 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
+		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
+		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 7,  0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0,  0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  7,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  5 ,
-		5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 , 5 , 5  ,5 , 5 , 5 , 5 , 5 , 0 , 5  , 5 ,
+		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
+		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
+		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
+		5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 , 5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 ,
 	};
 
 	SetMap(D1Map);
@@ -146,26 +150,33 @@ void Dungeon3::InitDungeon(World* world)
 	Draw(world, 0);*/
 
 	//Static Init Fin---------------------------------------------------------------
-	Actor** Dungeon3Actors = new Actor * [16];
+	
+	Actor** Dungeon3Actors = new Actor * [21];
 
 	Dungeon3Actors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
 	Dungeon3Actors[1] = new Enemy(120, 100, World::Instance->PlayerPtr);
 	Dungeon3Actors[2] = new Enemy(220, 100, World::Instance->PlayerPtr);
-	Dungeon3Actors[3] = new Wood(11, 14);
-	Dungeon3Actors[4] = new Wood(11, 15);
-	Dungeon3Actors[5] = new Wood(11, 16);
-	Dungeon3Actors[6] = new Wood(11, 17);
-	Dungeon3Actors[7] = new Wood(11, 18);
-	Dungeon3Actors[8] = new Wood(12, 14);
-	Dungeon3Actors[9] = new Wood(13, 14);
-	Dungeon3Actors[10] = new Wood(16, 14);
-	Dungeon3Actors[11] = new Wood(17, 14);
-	Dungeon3Actors[12] = new Wood(18, 14);
-	Dungeon3Actors[13] = new Door(19, 17);
+	Dungeon3Actors[3] = new Wood(13, 6);
+	Dungeon3Actors[4] = new Wood(14, 6);
+	Dungeon3Actors[5] = new Wood(15, 6);
+	Dungeon3Actors[6] = new Wood(16, 6);
+	Dungeon3Actors[7] = new Wood(17, 6);
+	Dungeon3Actors[8] = new Wood(18, 6);
+	Dungeon3Actors[9] = new Wood(13, 7);
+	Dungeon3Actors[10] = new Wood(13, 8);
+	Dungeon3Actors[11] = new Wood(13, 9);
+	Dungeon3Actors[12] = new Wood(14, 9);
+	Dungeon3Actors[13] = new Door(19, 7);
 	Dungeon3Actors[14] = new Sythe(5, 8);
 	Dungeon3Actors[15] = new Rabclip(10, 1);
+	Dungeon3Actors[16] = new LockedGate(15, 9);
+	Dungeon3Actors[17] = new LockedGateRight(16, 9);
+	Dungeon3Actors[18] = new Wood(17, 9);
+	Dungeon3Actors[19] = new Wood(18, 9);
+	Dungeon3Actors[20] = new Key(8, 9);
 
-	for (size_t D1Actors = 0; D1Actors < 16; D1Actors++)
+
+	for (size_t D1Actors = 0; D1Actors < 21; D1Actors++)
 	{
 		world->Actors.AddElement(Dungeon3Actors[D1Actors]);
 	}

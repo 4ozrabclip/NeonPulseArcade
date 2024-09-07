@@ -87,6 +87,21 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
     case DESK_RIGHT_GREY:
         return olc::vi2d(10, 4)
             * World::Instance->TileSize;
+    case LOCKED_GATE_LEFT:
+        return olc::vi2d(6, 1)
+            * World::Instance->TileSize;
+    case LOCKED_GATE_RIGHT:
+        return olc::vi2d(7, 1)
+            * World::Instance->TileSize;
+    case OPEN_GATE_LEFT:
+        return olc::vi2d(2, 2)
+            * World::Instance->TileSize;
+    case OPEN_GATE_RIGHT:
+        return olc::vi2d(3, 2)
+            * World::Instance->TileSize;
+    case KEY:
+        return olc::vi2d(14, 3)
+            * World::Instance->TileSize;
     default:
         return olc::vi2d(-1, -1); 
     }
@@ -136,10 +151,8 @@ olc::vi2d Actor::GetXY()
 //    this->AnimSeq = InAnimSeq;
 //}
 
-
 void Actor::SetXY(float InX, float InY)
 {
     Pos.coords.x += InX;
     Pos.coords.y += InY;
-
 }

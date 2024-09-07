@@ -20,13 +20,17 @@ World::World()
 	sAppName = "4oz Game";
 	Instance = this;
 	EnemyMax = 3;
-	LevelSwitchFlag = false;
 	Level = 0;
+
+	EndLevelFLag = false;
+	bEnemyKilled = false;
+	DeadEnemyIndex = 0;
 }
 
 World::~World()
 {
-	for (ActorIndex = 0; ActorIndex < Actors.Num(); ++ActorIndex)
+	size_t ArraySize = Actors.Num();
+	for (ActorIndex = 0; ActorIndex < ArraySize; ++ActorIndex)
 	{
 		Actors.RemoveElement(ActorIndex);
 	}
@@ -54,17 +58,19 @@ bool World::OnUserCreate()
 {
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
 	PlayerPtr = new Player(20, 20);
-	Map** DungeonPtrs = new Map * [3];
+	Map** DungeonPtrs = new Map * [4];
 	DungeonPtrs[0] = new Dungeon1();
 	DungeonPtrs[1] = new Dungeon2();
 	DungeonPtrs[2] = new Dungeon3();
+	DungeonPtrs[3] = new Dungeon3();
 	
 	Dungeons.AddElement(DungeonPtrs[0]);
 	Dungeons.AddElement(DungeonPtrs[1]);
 	Dungeons.AddElement(DungeonPtrs[2]);
+	Dungeons.AddElement(DungeonPtrs[3]);
 
 	delete[] DungeonPtrs;
-	Flag = true;
+	NewLevelFlag = true;
 	return true;
 }
 bool World::OnUserUpdate(float fElapsedTime)
@@ -74,26 +80,31 @@ bool World::OnUserUpdate(float fElapsedTime)
 	Clear(ClearPixel);
 	SetPixelMode(olc::Pixel::MASK);
 
-	if (Flag)
+	if (NewLevelFlag)
 	{
 		Dungeons.GetElement(Level)->InitDungeon(Instance);
-		Flag = false;
+		NewLevelFlag = false;
 	}
 	Dungeons.GetElement(Level)->Update(Instance, fElapsedTime);
 
 	for (ActorIndex = 0; ActorIndex < ArraySize; ++ActorIndex)
 	{
-		if (Actors.GetElement(ActorIndex))
-		{
-			Actors.GetElement(ActorIndex)->Update(Instance, fElapsedTime);
-		}
+		Actors.GetElement(ActorIndex)->Update(Instance, fElapsedTime);
 	}
+
 	PlayerPtr->Update(Instance, fElapsedTime);
-	if (LevelSwitchFlag)
+	
+	//if (bEnemyKilled)
+	//{
+	//	ClearDeadActors();
+	//	bEnemyKilled = false;
+	//}
+
+	if (EndLevelFLag)
 	{
-		ClearMapActors();
-		LevelSwitchFlag = false;
-		Flag = true;
+		ClearAllActors();
+		EndLevelFLag = false;
+		NewLevelFlag = true;
 	}
 	return true;
 }
@@ -101,24 +112,29 @@ bool World::OnUserDestroy()
 {
 	return true;
 }
-void World::ClearMapActors()
+void World::ClearAllActors()
 {
 	size_t ArraySize = Actors.Num();
 	for (ActorIndex = 0; ActorIndex < ArraySize; ActorIndex++)
 	{
-		World::Instance->Actors.RemoveElement(ActorIndex);
+		Actors.RemoveElement(ActorIndex);
 	}
 }
-
-int World::GetNumCharacters()
+void World::ClearDeadActors()
 {
-	return EnemyMax + 1; //max enemys + 1 for player
+	Actors.RemoveElement(DeadEnemyIndex);
 }
 
 void World::LevelSwitch(bool bSwitch, int InLevel)
 {
-	LevelSwitchFlag = bSwitch;
+	EndLevelFLag = bSwitch;
 	Level = InLevel;
+}
+
+void World::EnemyKilled(bool InbEnemyKilled, int InDeadEnemyIndex)
+{
+	bEnemyKilled = InbEnemyKilled;
+	DeadEnemyIndex = InDeadEnemyIndex;
 }
 
 int World::GetActorIndex()

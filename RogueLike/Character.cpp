@@ -22,7 +22,7 @@ void Character::Update(World* world, float fElapsedTime)
     
 }
 
-void Character::PushBackCollision(TVector2D<float> max, TVector2D<float> min)
+void Character::BorderStopper(TVector2D<float> max, TVector2D<float> min)
 {
     if (this->Pos.coords.x <= min.x)
     {
@@ -42,11 +42,18 @@ void Character::PushBackCollision(TVector2D<float> max, TVector2D<float> min)
     }
 }
 
+void Character::SetDirection(MoveDirection InDir)
+{
+    Direction = InDir;
+}
 
+MoveDirection Character::GetDirection()
+{
+    return Direction;
+}
 
 void Character::SetXY(float InX, float InY)
 {
     this->Pos.coords.x += InX;
     this->Pos.coords.y += InY;
-
 }

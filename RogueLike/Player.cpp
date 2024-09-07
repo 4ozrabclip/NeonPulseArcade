@@ -34,7 +34,7 @@ void Player::Update(World* World, float fElapsedTime)
 {
     Move(fElapsedTime);
     Draw(World, fElapsedTime);
-    PushBackCollision({ 228-10,228-10 }, { 10, 10 });
+    BorderStopper({ 228-10,228-10 }, { 10, 10 });
     if (HoldingWeapon)
     {
         AnimSeq.WhichSprite = Actor::SpritePosition(RABCLIP_SWORD);
@@ -46,7 +46,6 @@ void Player::Update(World* World, float fElapsedTime)
 
 void Player::Move(float fElapsedTime)
 {
-
     float x = 0, y = 0;
 
     if (World::Instance->GetKey(olc::Key::LEFT).bPressed ||
@@ -60,25 +59,25 @@ void Player::Move(float fElapsedTime)
     {
         SetDirection(LEFT);
         FacingLeft = true;
-        x -= MoveSpeed * fElapsedTime;
+        Pos.coords.x -= MoveSpeed * fElapsedTime;
     }
     else if (World::Instance->GetKey(olc::Key::RIGHT).bHeld)
     {
         SetDirection(RIGHT);
         FacingLeft = false;
-        x += MoveSpeed * fElapsedTime;
+        Pos.coords.x += MoveSpeed * fElapsedTime;
     }
     if (World::Instance->GetKey(olc::Key::UP).bHeld)
     {
         SetDirection(UP);
-        y -= MoveSpeed * fElapsedTime;
+        Pos.coords.y -= MoveSpeed * fElapsedTime;
     }
     else if (World::Instance->GetKey(olc::Key::DOWN).bHeld)
     {
         SetDirection(DOWN);
-        y += MoveSpeed * fElapsedTime;
+        Pos.coords.y += MoveSpeed * fElapsedTime;
     }
-    SetXY(x, y);
+    //SetXY(x, y);
     if (World::Instance->GetKey(olc::Key::LEFT).bReleased ||
         World::Instance->GetKey(olc::Key::RIGHT).bReleased ||
         World::Instance->GetKey(olc::Key::UP).bReleased ||
@@ -92,16 +91,6 @@ void Player::SetXY(float InX, float InY)
 {
     Pos.coords.x += InX;
     Pos.coords.y += InY;
-}
-
-void Player::SetDirection(MoveDirection dir)
-{
-    Direction = dir;
-}
-
-MoveDirection Player::GetDirection()
-{
-    return Direction; 
 }
 
 olc::vi2d Player::GetXY()
@@ -119,6 +108,7 @@ int Player::GetMoveSpeed()
     return MoveSpeed;
 }
 
+
 void Player::SetWeapon(bool bHoldingWeapon)
 {
     HoldingWeapon = bHoldingWeapon;
@@ -127,4 +117,14 @@ void Player::SetWeapon(bool bHoldingWeapon)
 bool Player::GetWeapon()
 {
     return HoldingWeapon;
+}
+
+bool Player::GetHasKey()
+{
+    return bHasKey;
+}
+
+void Player::SetHasKey(bool InbHasKey)
+{
+    bHasKey = InbHasKey;
 }

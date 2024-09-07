@@ -12,8 +12,6 @@ Item::Item(int x, int y)
 {
     this->Pos.coords.x = x * 12;
     this->Pos.coords.y = y * 12;
-
-    
 }
 void Item::TakeItem()
 {

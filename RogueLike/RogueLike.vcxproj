@@ -135,8 +135,12 @@
     <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Door2.cpp" />
+    <ClCompile Include="Door3.cpp" />
     <ClCompile Include="Dungeon2.cpp" />
     <ClCompile Include="Dungeon3.cpp" />
+    <ClCompile Include="Key.cpp" />
+    <ClCompile Include="LockedGate.cpp" />
+    <ClCompile Include="LockedGateRight.cpp" />
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Rabclip.cpp" />
     <ClCompile Include="Sythe.cpp" />
@@ -162,8 +166,12 @@
     <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Door2.h" />
+    <ClInclude Include="Door3.h" />
     <ClInclude Include="Dungeon2.h" />
     <ClInclude Include="Dungeon3.h" />
+    <ClInclude Include="Key.h" />
+    <ClInclude Include="LockedGate.h" />
+    <ClInclude Include="LockedGateRight.h" />
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="Rabclip.h" />
     <ClInclude Include="Sythe.h" />

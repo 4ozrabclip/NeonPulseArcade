@@ -15,7 +15,6 @@ Wood::Wood(int x, int y)
 
 void Wood::Update(World* world, float fElapsedTime)
 {
-    int MaxNumCharacters = World::Instance->GetNumCharacters();
 
     //for (int Num = 0; Num < MaxNumCharacters - 1; Num++)
     //{
@@ -50,7 +49,7 @@ void Wood::Update(World* world, float fElapsedTime)
         //std::cout << "no collide: " << PlayerPtr->Pos.coords.x << std::endl;
         //std::cout << "no collide: " << PlayerPtr->Pos.coords.y << std::endl;
     }
-    //PlayerPtr->PushBackCollision({ Pos.coords.x,Pos.coords.y }, {Pos.coords.x - 12, Pos.coords.y - 12});
+    //PlayerPtr->BorderStopper({ Pos.coords.x,Pos.coords.y }, {Pos.coords.x - 12, Pos.coords.y - 12});
     Draw(world, fElapsedTime);
 }
 
