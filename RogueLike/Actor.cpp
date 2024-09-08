@@ -132,7 +132,12 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
     case FINAL_DOOR:
         return olc::vi2d(4, 1)
             * World::Instance->TileSize;
-
+    case CHECKERWALLS:
+        return olc::vi2d(3, 4)
+            * World::Instance->TileSize;
+    case DEVIL:
+        return olc::vi2d(12, 3)
+            * World::Instance->TileSize;
     default:
         return olc::vi2d(-1, -1); 
     }

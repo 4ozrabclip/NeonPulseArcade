@@ -1,18 +1,18 @@
 #pragma once
 #include "Map.h"
 #include "Actor.h"
-#include <memory>
 
 class Pill;
 class Door;
 class Wood;
 class Enemy;
 
-class EndScreen : public Map
+class DeathScreen : public Map
 {
 public:
-	EndScreen();
+	DeathScreen();
 	virtual void DrawRoom(World* world) override;
 	virtual void SetMap(int map[]);
 	virtual void InitDungeon(World* world) override;
 };
+

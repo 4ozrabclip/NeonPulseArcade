@@ -46,7 +46,9 @@ enum InitialSprite {
 	SECRETKEY,
 	SECRET_GATE_LEFT,
 	SECRET_GATE_RIGHT,
-	FINAL_DOOR
+	FINAL_DOOR,
+	CHECKERWALLS,
+	DEVIL
 };
 struct FCoords {
 	TVector2D<float> coords;

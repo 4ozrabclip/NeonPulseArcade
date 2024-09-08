@@ -5,6 +5,7 @@ class Player;
 class Enemy : public Character
 {
 public:
+	Enemy() {};
 	Enemy(int x, int y, Player* InPlayerPtr);
 	virtual ~Enemy();
 
@@ -18,8 +19,9 @@ public:
 protected:
 	int EnemyHealth;
 	float fEnemy_ElapsedTime;
+	Player* PlayerPtr;
 private:
 	Enemy(const Enemy& other);
-	Player* PlayerPtr;
+
 
 };

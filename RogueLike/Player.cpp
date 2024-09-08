@@ -21,6 +21,8 @@ Player::Player(int x, int y)
     FacingLeft = false;
     HoldingWeapon = false;
      
+    Health = 100000;
+
     SytheHealth = 100;
 }
 Player::~Player()
@@ -143,6 +145,25 @@ bool Player::GetAttacking()
 void Player::SetAttacking(bool InIsAttacking)
 {
     IsAttacking = InIsAttacking;
+}
+
+void Player::TakeDamage()
+{
+    if (Health > 0)
+    {
+        Health--;
+        World::Instance->DrawRect(olc::vf2d(Pos.coords.x, Pos.coords.y), AnimSeq.SpriteSize, olc::RED);
+    }
+    else 
+    {
+        YouDie();
+    }
+    Health--;
+}
+
+void Player::YouDie()
+{
+    World::Instance->LevelSwitch(true, 7);
 }
 
 void Player::SetHasSecretKey(bool InbHasSecretKey)

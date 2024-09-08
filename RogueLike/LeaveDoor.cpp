@@ -26,7 +26,7 @@ void LeaveDoor::Update(World* world, float fElapsedTime)
         //AnimSeq.WhichSprite = Actor::SpritePosition(LeaveDoorSTAIRS);
         //AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
         //Draw(world, fElapsedTime);
-        World::Instance->LevelSwitch(true, 0);
+        World::Instance->LevelSwitch(true, 6);
     }
 }
 

@@ -109,23 +109,6 @@ void YtcDungeon1::InitDungeon(World* world)
 	};
 	SetMap(D2Map);
 
-	/*FAnimSequence WoodSprite;
-	WhichSpriteInt = WOOD;
-	WoodSprite.SpriteSize = World::Instance->TileSize;
-	WoodSprite.NumberOfFrames = 2;
-	WoodSprite.AnimationDuration = 1.0f;
-	WoodSprite.WhichSprite = Actor::SpritePosition(WOOD);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, WoodSprite);
-	Draw(world, 0);
-
-	FAnimSequence SpeakerSprite;
-	WhichSpriteInt = SPEAKER;
-	SpeakerSprite.SpriteSize = World::Instance->TileSize;
-	SpeakerSprite.NumberOfFrames = 2;
-	SpeakerSprite.AnimationDuration = 1.0f;
-	SpeakerSprite.WhichSprite = Actor::SpritePosition(SPEAKER);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, SpeakerSprite);
-	Draw(world, 0);*/
 	//Static Init Fin -----------------------------------------------------------------------------------------
 
 	YtcDungeon1Actors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);

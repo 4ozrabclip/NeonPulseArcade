@@ -79,6 +79,11 @@ void Enemy::ReceivePain()
 
         World::Instance->DrawRect(olc::vf2d(Pos.coords.x, Pos.coords.y), AnimSeq.SpriteSize, olc::RED);
     }
+    else if (RectangleCollision(PlayerPtr->Pos.coords))
+    {
+        PlayerPtr->TakeDamage();
+        
+    }
     else {
         PlayerPtr->SetAttacking(false);
     }

@@ -25,7 +25,8 @@ public:
 
 	bool GetAttacking();
 	void SetAttacking(bool InIsAttacking);
-
+	void TakeDamage();
+	void YouDie();
 	int SytheHealth;
 	void SetHasSecretKey(bool InbHasSecretKey);
 	bool GetHasSecretKey();
@@ -35,6 +36,7 @@ protected:
 	float fPlayer_ElapsedTime;
 	MoveDirection Direction;
 private:
+	int Health;
 	bool IsAttacking;
 	bool bHasSecretKey;
 	bool bHasKey;

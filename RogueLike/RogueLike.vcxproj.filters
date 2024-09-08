@@ -177,6 +177,9 @@
     <ClCompile Include="EndScreen.cpp">
       <Filter>Source Files\Actors\Environment\Dungeons</Filter>
     </ClCompile>
+    <ClCompile Include="DeathScreen.cpp">
+      <Filter>Source Files\Actors\Environment\Dungeons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="planning.md" />
@@ -291,6 +294,9 @@
       <Filter>Header Files\Actors\Environment\Door</Filter>
     </ClInclude>
     <ClInclude Include="EndScreen.h">
+      <Filter>Header Files\Actors\Environment\Dungeons</Filter>
+    </ClInclude>
+    <ClInclude Include="DeathScreen.h">
       <Filter>Header Files\Actors\Environment\Dungeons</Filter>
     </ClInclude>
   </ItemGroup>
