@@ -19,7 +19,6 @@ Rabclip::Rabclip(int x, int y)
 
 void Rabclip::Move(float fElapsedTime)
 {
-
     Pos.coords.x += WalkSpeed;
 
         if (Pos.coords.x >= StartPosition + 10 || Pos.coords.x <= StartPosition - 10)

@@ -21,7 +21,6 @@ Ytc::Ytc(int x, int y, YtcDungeon1* InYtcDungeon)
     PlayerPtr = World::Instance->PlayerPtr;
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, AnimSeq);
     bHasntBeenTouchedYet = true;
-    //SecretKey* SecretKeyItem = new SecretKey(15, 4);
 }
 
 void Ytc::Move(float fElapsedTime)
@@ -42,7 +41,6 @@ void Ytc::Update(World* world, float fElapsedTime)
 
     if (RectangleCollision(PlayerPtr->Pos.coords) && bHasntBeenTouchedYet)
     {
-        //world->Actors.AddElement(SecretKeyItem);
         World::Instance->DrawRect(olc::vf2d(Pos.coords.x, Pos.coords.y), AnimSeq.SpriteSize, olc::RED);
         YtcDungeon->bSecretKeyGiven = true;
         YtcDungeon->DungeonUpdate(world);

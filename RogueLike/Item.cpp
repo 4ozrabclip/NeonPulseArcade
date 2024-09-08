@@ -33,22 +33,7 @@ void Item::Update(World* world, float fElapsedTime)
         ItemEffect();
     }
 }
-//bool Item::HasCollided()
-//{
-//    float PlayerX = PlayerPtr->GetXY().x;
-//    float PlayerY = PlayerPtr->GetXY().y;
-//
-//    float ItemX = GetXY().x;
-//    float ItemY = GetXY().y;
-//
-//    //olc::vi2d PlayerPos = {PlayerX, PlayerY};
-//
-//    float DeltaX = PlayerX - ItemX;
-//    float DeltaY = PlayerY - ItemY;
-//    float DistanceSquared = DeltaX * DeltaX + DeltaY * DeltaY;
-//
-//    return DistanceSquared <= 6;
-//}
+
 void Item::ItemEffect()
 {
 

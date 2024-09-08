@@ -156,9 +156,6 @@
     <ClCompile Include="Map.cpp">
       <Filter>Source Files\Actors\Environment\Dungeons</Filter>
     </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Brick.cpp">
       <Filter>Source Files\Actors\Environment</Filter>
     </ClCompile>
@@ -274,9 +271,6 @@
     </ClInclude>
     <ClInclude Include="DoorToStart.h">
       <Filter>Header Files\Actors\Environment\Door</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Brick.h">
       <Filter>Header Files\Actors\Environment</Filter>

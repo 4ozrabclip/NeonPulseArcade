@@ -23,9 +23,6 @@ void Door::Update(World* world, float fElapsedTime)
 
     if (bItemTaken)
     {
-        //AnimSeq.WhichSprite = Actor::SpritePosition(DOORSTAIRS);
-        //AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
-        //Draw(world, fElapsedTime);
         World::Instance->LevelSwitch(true, 1);
     }
 }

@@ -15,7 +15,6 @@ public:
 
 	virtual void InitDungeon(World* world);
 
-	//virtual bool HasCollided();
 protected:
 	std::unique_ptr<int[]> MapLayout;
 	int WhichSpriteInt;

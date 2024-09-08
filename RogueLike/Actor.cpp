@@ -172,20 +172,10 @@ void Actor::SetAnimatedSprite(std::shared_ptr<AnimatedSprite> AnimatedSprite)
     AnimatedSpritePtr = AnimatedSprite;
 }
 
-//void Actor::SetCollider(olc::vf2d pos)
-//{
-//    
-//}
-
 olc::vi2d Actor::GetXY()
 {
     return olc::vi2d(Pos.coords.x, Pos.coords.y);
 }
-
-//void Actor::SetAnimSeq(FAnimSequence InAnimSeq)
-//{
-//    this->AnimSeq = InAnimSeq;
-//}
 
 void Actor::SetXY(float InX, float InY)
 {

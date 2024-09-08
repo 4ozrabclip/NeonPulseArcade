@@ -19,10 +19,6 @@ void Sythe::ItemEffect()
 {
     std::cout << "Sythe Health: " << SytheHealth << std::endl;
     PlayerPtr->SetWeapon(true);
-    //if (PlayerPtr->GetAttacking() == true)
-    //{
-    //    SytheHealth--;
-    //}
 }
 void Sythe::SetSytheHealth(int InSytheHealth)
 {

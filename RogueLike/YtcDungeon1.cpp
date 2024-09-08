@@ -143,15 +143,12 @@ void YtcDungeon1::InitDungeon(World* world)
 	{
 		world->Actors.AddElement(YtcDungeon1Actors[D1Actors]);
 	}
-	//delete[] YtcDungeon1Actors;
-	//DungeonUpdate(world);
-
 	PlaySound(TEXT("ESCAPE.wav"), 0, SND_FILENAME | SND_ASYNC);
 
-	//DrawRoom(world);
 }
 
 void YtcDungeon1::DungeonUpdate(World* world)
 {
 	world->Actors.AddElement(YtcDungeon1Actors[21]);
+	delete[] YtcDungeon1Actors;
 }

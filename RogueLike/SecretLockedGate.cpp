@@ -5,7 +5,6 @@ SecretLockedGate::SecretLockedGate(int x, int y)
 {
     this->Pos.coords.x = x * 12;
     this->Pos.coords.y = y * 12;
-    //WhichSpriteInt = SecretLockedGateLADY;
     AnimSeq.NumberOfFrames = 2;
     AnimSeq.SpriteSize = World::Instance->TileSize;
     AnimSeq.AnimationDuration = 1.0f;
@@ -17,10 +16,6 @@ SecretLockedGate::SecretLockedGate(int x, int y)
 void SecretLockedGate::Update(World* world, float fElapsedTime)
 {
 
-    //for (int Num = 0; Num < MaxNumCharacters - 1; Num++)
-    //{
-    //    World::Instance->Enemy
-    //}
     bool Key = PlayerPtr->GetHasSecretKey();
 
     if (PlayerPtr->RectangleCollision(Pos.coords))
@@ -30,20 +25,15 @@ void SecretLockedGate::Update(World* world, float fElapsedTime)
             switch (PlayerPtr->GetDirection())
             {
             case LEFT:
-                //PlayerPtr->SetXY(Pos.coords.x, PlayerPtr->Pos.coords.y);
                 PlayerPtr->Pos.coords.x = this->Pos.coords.x + 12;
                 break;
             case RIGHT:
-                //PlayerPtr->SetXY(Pos.coords.x, PlayerPtr->Pos.coords.y);
                 PlayerPtr->Pos.coords.x = this->Pos.coords.x - 12;
-                //PlayerPtr->Pos.coords.x - 1;
                 break;
             case UP:
-                //PlayerPtr->SetXY(PlayerPtr->Pos.coords.x, PlayerPtr->Pos.coords.y);
                 PlayerPtr->Pos.coords.y = this->Pos.coords.y + 12;
                 break;
             case DOWN:
-                //PlayerPtr->SetXY(PlayerPtr->Pos.coords.x, PlayerPtr->Pos.coords.y);
                 PlayerPtr->Pos.coords.y = this->Pos.coords.y - 12;
                 break;
             }
@@ -52,8 +42,6 @@ void SecretLockedGate::Update(World* world, float fElapsedTime)
             ItemEffect();
         }
     }
-
-    //PlayerPtr->BorderStopper({ Pos.coords.x,Pos.coords.y }, {Pos.coords.x - 12, Pos.coords.y - 12});
     Draw(world, fElapsedTime);
 }
 

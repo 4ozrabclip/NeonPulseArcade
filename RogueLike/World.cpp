@@ -91,7 +91,7 @@ bool World::OnUserUpdate(float fElapsedTime)
 	Clear(ClearPixel);
 	SetPixelMode(olc::Pixel::MASK);
 
-	if (NewLevelFlag)
+	if (NewLevelFlag) 
 	{
 		Dungeons.GetElement(Level)->InitDungeon(Instance);
 		NewLevelFlag = false;
@@ -111,7 +111,7 @@ bool World::OnUserUpdate(float fElapsedTime)
 	}
 
 	if (EndLevelFLag)
-	{
+	{//Clear actors when room is exited
 		ClearAllActors();
 		EndLevelFLag = false;
 		NewLevelFlag = true;
@@ -122,7 +122,8 @@ bool World::OnUserDestroy()
 {
 	return true;
 }
-void World::ClearAllActors()
+
+void World::ClearAllActors() //Remove all actors from TArray 
 {
 	size_t ArraySize = Actors.Num();
 	for (ActorIndex = 0; ActorIndex < ArraySize; ActorIndex++)
@@ -130,7 +131,7 @@ void World::ClearAllActors()
 		Actors.RemoveElement(ActorIndex);
 	}
 }
-void World::ClearDeadActors()
+void World::ClearDeadActors() //Remove Dead Actors From T Array
 {
 	Actors.RemoveElement(DeadEnemyIndex);
 }
@@ -145,10 +146,6 @@ void World::EnemyKilled(bool InbEnemyKilled, int InDeadEnemyIndex)
 {
 	bEnemyKilled = InbEnemyKilled;
 	DeadEnemyIndex = InDeadEnemyIndex;
-}
-
-void World::DrawUIText(olc::vi2d pos, std::string text)
-{
 }
 
 int World::GetActorIndex()

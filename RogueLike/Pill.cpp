@@ -16,5 +16,4 @@ Pill::Pill(int x, int y)
 void Pill::ItemEffect()
 {
     PlayerPtr->SetMoveSpeed(200);
-    //PlayerPtr->SetAnimSeq(PlayerFastWalk);
 }

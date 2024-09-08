@@ -17,5 +17,4 @@ void Mushroom::ItemEffect()
 {
 
     PlayerPtr->SetMoveSpeed(50);
-    //PlayerPtr->SetAnimSeq(PlayerFastWalk);
 }

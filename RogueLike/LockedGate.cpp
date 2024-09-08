@@ -5,7 +5,6 @@ LockedGate::LockedGate(int x, int y)
 {
     this->Pos.coords.x = x * 12;
     this->Pos.coords.y = y * 12;
-    //WhichSpriteInt = LockedGateLADY;
     AnimSeq.NumberOfFrames = 2;
     AnimSeq.SpriteSize = World::Instance->TileSize;
     AnimSeq.AnimationDuration = 1.0f;
@@ -17,10 +16,6 @@ LockedGate::LockedGate(int x, int y)
 void LockedGate::Update(World* world, float fElapsedTime)
 {
 
-    //for (int Num = 0; Num < MaxNumCharacters - 1; Num++)
-    //{
-    //    World::Instance->Enemy
-    //}
     bool Key = PlayerPtr->GetHasKey();
 
         if (PlayerPtr->RectangleCollision(Pos.coords))
@@ -52,9 +47,6 @@ void LockedGate::Update(World* world, float fElapsedTime)
             }
         }
    
-
-   
-    //PlayerPtr->BorderStopper({ Pos.coords.x,Pos.coords.y }, {Pos.coords.x - 12, Pos.coords.y - 12});
     Draw(world, fElapsedTime);
 }
 
