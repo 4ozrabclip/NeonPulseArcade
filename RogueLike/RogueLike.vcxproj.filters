@@ -156,6 +156,9 @@
     <ClCompile Include="Map.cpp">
       <Filter>Source Files\Actors\Environment\Dungeons</Filter>
     </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="planning.md" />
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="DoorToStart.h">
       <Filter>Header Files\Actors\Environment\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

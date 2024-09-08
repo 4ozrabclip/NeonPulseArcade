@@ -129,7 +129,7 @@ void ApaDungeon1::InitDungeon(World* world)
 		world->Actors.AddElement(ApaDungeon1Actors[D1Actors]);
 	}
 	delete[] ApaDungeon1Actors;
-	//PlaySound(TEXT("pcdopamine.wav"), 0, SND_FILENAME | SND_ASYNC);
+	PlaySound(TEXT("Jedi.wav"), 0, SND_FILENAME | SND_ASYNC);
 
 	//DrawRoom(world);
 }

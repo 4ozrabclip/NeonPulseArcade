@@ -7,6 +7,7 @@
 #include "DoorToYtc.h"
 #include "DoorToApa.h"
 #include "Enemy.h"
+#include "Sythe.h"
 StartDungeon::StartDungeon()
 {
 	MapLayout = std::make_unique<int[]>(400);
@@ -69,7 +70,7 @@ void StartDungeon::InitDungeon(World* world)
 	//Static Init-------------------------------------------------------------------
 	MapLayout = std::make_unique<int[]>(400);
 	int D1Map[400] = {
-		1 , 1  ,1 , 1 , 1 , 1 , 1 , 1 , 1  , 1 , 1 , 1  ,1 , 1 , 1 , 1 , 1 , 1 , 1  , 1 ,
+		1 , 1  ,1 , 1 , 1 , 1 , 1 , 1 , 1  , 1 , 1 , 1 , 1 , 1 , 0 , 1 , 1 , 1 , 1  , 1 ,
 		1 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  1 ,
 		1 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  1 ,
 		1 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  1 ,
@@ -140,7 +141,7 @@ void StartDungeon::InitDungeon(World* world)
 	Actor** StartDungeonActors = new Actor * [15];
 
 	StartDungeonActors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
-	StartDungeonActors[1] = new DoorToApa(19, 4);
+	StartDungeonActors[1] = new DoorToApa(0, 14);
 	StartDungeonActors[2] = new DoorToYtc(19, 12);
 	StartDungeonActors[3] = new Wood(11, 14);
 	StartDungeonActors[4] = new Wood(11, 15);
@@ -153,7 +154,7 @@ void StartDungeon::InitDungeon(World* world)
 	StartDungeonActors[11] = new Wood(17, 14);
 	StartDungeonActors[12] = new Wood(18, 14);
 	StartDungeonActors[13] = new Door(19, 17);
-	StartDungeonActors[14] = new Pill(5, 8);
+	StartDungeonActors[14] = new Sythe(5, 8);
 
 	for (size_t D1Actors = 0; D1Actors < 15; D1Actors++)
 	{

@@ -9,7 +9,7 @@ DoorToApa::DoorToApa(int x, int y)
     AnimSeq.NumberOfFrames = 2;
     AnimSeq.SpriteSize = World::Instance->TileSize;
     AnimSeq.AnimationDuration = 1.0f;
-    AnimSeq.WhichSprite = Actor::SpritePosition(DOOR);
+    AnimSeq.WhichSprite = Actor::SpritePosition(APA_DOORLADY);
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
 }
 

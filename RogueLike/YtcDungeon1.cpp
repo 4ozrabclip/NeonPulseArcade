@@ -19,13 +19,31 @@ YtcDungeon1::YtcDungeon1()
 
 void YtcDungeon1::DrawRoom(World* world)
 {
-	FAnimSequence WoodSprite;
-	WhichSpriteInt = WOOD;
-	WoodSprite.SpriteSize = World::Instance->TileSize;
-	WoodSprite.NumberOfFrames = 2;
-	WoodSprite.AnimationDuration = 1.0f;
-	WoodSprite.WhichSprite = Actor::SpritePosition(WOOD);
-	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, WoodSprite);
+	FAnimSequence FancyWalls1Sprite;
+	WhichSpriteInt = FANCYWALLS1;
+	FancyWalls1Sprite.SpriteSize = World::Instance->TileSize;
+	FancyWalls1Sprite.NumberOfFrames = 2;
+	FancyWalls1Sprite.AnimationDuration = 1.0f;
+	FancyWalls1Sprite.WhichSprite = Actor::SpritePosition(FANCYWALLS1);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, FancyWalls1Sprite);
+	Draw(world, 0);
+
+	FAnimSequence FancyWalls2Sprite;
+	WhichSpriteInt = FANCYWALLS2;
+	FancyWalls2Sprite.SpriteSize = World::Instance->TileSize;
+	FancyWalls2Sprite.NumberOfFrames = 2;
+	FancyWalls2Sprite.AnimationDuration = 1.0f;
+	FancyWalls2Sprite.WhichSprite = Actor::SpritePosition(FANCYWALLS2);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, FancyWalls2Sprite);
+	Draw(world, 0);
+
+	FAnimSequence FancyWalls3Sprite;
+	WhichSpriteInt = FANCYWALLS3;
+	FancyWalls3Sprite.SpriteSize = World::Instance->TileSize;
+	FancyWalls3Sprite.NumberOfFrames = 2;
+	FancyWalls3Sprite.AnimationDuration = 1.0f;
+	FancyWalls3Sprite.WhichSprite = Actor::SpritePosition(FANCYWALLS3);
+	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, FancyWalls3Sprite);
 	Draw(world, 0);
 
 	FAnimSequence SpeakerSprite;
@@ -57,26 +75,26 @@ void YtcDungeon1::InitDungeon(World* world)
 	//Static Init ------------------------------------------------------------------------------
 	MapLayout = std::make_unique<int[]>(400);
 	int D2Map[400] = {
-		5 , 5 , 0 , 5 , 5 , 5 , 5 , 5 , 5  , 5 , 5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
-		5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 , 5 , 5  ,5 , 5 , 5 , 5 , 5 , 12, 5  , 5 ,
+		29, 29, 0 , 29, 29, 29, 29, 29, 29 , 29, 29, 29 ,29, 29, 29, 29, 29, 29, 29 , 29,
+		29, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  29,
+		29, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  29,
+		29, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  29,
+		30, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  30,
+		30, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  30,
+		30, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  30,
+		30, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  30,
+		30, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  30,
+		30, 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  30,
+		30, 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  30,
+		31, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  31,
+		31, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  31,
+		31, 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  31,
+		31, 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  31,
+		31, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  31,
+		31, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  31,
+		31, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  31,
+		31, 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  31,
+		31, 31 ,31, 31, 31, 31, 31, 31, 31 , 31, 31, 31 ,31, 31, 31, 31, 31, 12, 31 , 31,
 	};
 	SetMap(D2Map);
 
@@ -129,7 +147,7 @@ void YtcDungeon1::InitDungeon(World* world)
 		world->Actors.AddElement(YtcDungeon1Actors[D1Actors]);
 	}
 	delete[] YtcDungeon1Actors;
-	//PlaySound(TEXT("pcdopamine.wav"), 0, SND_FILENAME | SND_ASYNC);
+	PlaySound(TEXT("ESCAPE.wav"), 0, SND_FILENAME | SND_ASYNC);
 
 	//DrawRoom(world);
 }

@@ -14,14 +14,8 @@ Player::Player(int x, int y)
     AnimSeq.NumberOfFrames = 4;
     AnimSeq.SpriteSize = World::Instance->TileSize;
     MoveSpeed = 100;
-    if (MoveSpeed == 100)
-    {
-        AnimSeq.AnimationDuration = 1.f;
-    } 
-    else if (MoveSpeed > 100)
-    {
-        AnimSeq.AnimationDuration = 0.2f;
-    }
+    
+    AnimSeq.AnimationDuration = 1.f;
 
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
     FacingLeft = false;
@@ -55,7 +49,6 @@ void Player::Update(World* World, float fElapsedTime)
         HoldingWeapon = false;
         SytheHealth = 100;
     }
-
 }
 
 void Player::Move(float fElapsedTime)
@@ -121,7 +114,6 @@ int Player::GetMoveSpeed()
 {
     return MoveSpeed;
 }
-
 
 void Player::SetWeapon(bool bHoldingWeapon)
 {

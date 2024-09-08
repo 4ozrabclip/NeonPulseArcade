@@ -102,6 +102,21 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
     case KEY:
         return olc::vi2d(14, 3)
             * World::Instance->TileSize;
+    case FANCYWALLS1:
+        return olc::vi2d(5, 0)
+            * World::Instance->TileSize;
+    case FANCYWALLS2:
+        return olc::vi2d(6, 0)
+            * World::Instance->TileSize;
+    case FANCYWALLS3:
+        return olc::vi2d(7, 0)
+            * World::Instance->TileSize;
+    case APA_DOORLADY:
+        return olc::vi2d(5, 5)
+            * World::Instance->TileSize;
+    case FERG_DOORGUARD:
+        return olc::vi2d(4, 5)
+            * World::Instance->TileSize;
     default:
         return olc::vi2d(-1, -1); 
     }

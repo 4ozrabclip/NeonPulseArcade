@@ -149,6 +149,7 @@
     <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Rabclip.cpp" />
     <ClCompile Include="Sythe.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Wood.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Door.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Mushroom.h" />
     <ClInclude Include="Rabclip.h" />
     <ClInclude Include="Sythe.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Wood.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Door.h" />

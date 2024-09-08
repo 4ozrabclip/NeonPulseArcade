@@ -32,9 +32,9 @@ void Enemy::Update(World* world, float fElapsedTime)
     Draw(world, fElapsedTime);
     ReceivePain();
     //std::cout << "Actor Index: " << World::Instance->GetActorIndex() << std::endl;
-
     BorderStopper({ 220,220 }, { 10, 10 });
 }
+
 void Enemy::Move(float fElapsedTime)
 {
     int TargetX = PlayerPtr->GetXY().x;
@@ -83,7 +83,6 @@ void Enemy::ReceivePain()
         PlayerPtr->SetAttacking(false);
     }
 }
-
 
 bool Enemy::HasCollided()
 {
