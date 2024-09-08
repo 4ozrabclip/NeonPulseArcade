@@ -14,25 +14,16 @@ Sythe::Sythe(int x, int y)
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
     PlayerPtr = World::Instance->PlayerPtr;
     SytheHealth = 100;
-
 }
 void Sythe::ItemEffect()
 {
+    std::cout << "Sythe Health: " << SytheHealth << std::endl;
     PlayerPtr->SetWeapon(true);
+    //if (PlayerPtr->GetAttacking() == true)
+    //{
+    //    SytheHealth--;
+    //}
 }
-
-void Sythe::Update(World* world, float fElapsedTime)
-{
-    if (PlayerPtr->GetAttacking() && SytheHealth > 0)
-    {
-        SytheHealth -= 10;
-    }
-    else if (SytheHealth <= 0)
-    {
-
-    }
-}
-
 void Sythe::SetSytheHealth(int InSytheHealth)
 {
     SytheHealth = InSytheHealth;

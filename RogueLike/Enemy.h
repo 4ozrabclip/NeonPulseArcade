@@ -12,11 +12,13 @@ public:
 	virtual void Move(float fElapsedTime) override;
 	virtual void ReceivePain();
 	virtual bool HasCollided();
+	virtual void SetHealth(int InHealth);
+	virtual int GetHealth() { return EnemyHealth; }
 
 protected:
+	int EnemyHealth;
 	float fEnemy_ElapsedTime;
 private:
-
 	Enemy(const Enemy& other);
 	Player* PlayerPtr;
 

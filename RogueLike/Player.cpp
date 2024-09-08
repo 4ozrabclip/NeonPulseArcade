@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include <iostream>
 #include <random>
+#include "Sythe.h"
 
 Player::Player(int x, int y)
 {
@@ -25,6 +26,8 @@ Player::Player(int x, int y)
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, AnimSeq);
     FacingLeft = false;
     HoldingWeapon = false;
+     
+    SytheHealth = 100;
 }
 Player::~Player()
 {
@@ -35,6 +38,7 @@ void Player::Update(World* World, float fElapsedTime)
     Move(fElapsedTime);
     Draw(World, fElapsedTime);
     BorderStopper({ 228-10,228-10 }, { 10, 10 });
+    std::cout << "Sythe Health: " << SytheHealth << std::endl;
     if (HoldingWeapon)
     {
         AnimSeq.WhichSprite = Actor::SpritePosition(RABCLIP_SWORD);
@@ -42,6 +46,16 @@ void Player::Update(World* World, float fElapsedTime)
     else {
         AnimSeq.WhichSprite = Actor::SpritePosition(RABCLIP);
     }
+    if (IsAttacking)
+    {
+        SytheHealth--;
+    }
+    if (SytheHealth <= 0)
+    {
+        HoldingWeapon = false;
+        SytheHealth = 100;
+    }
+
 }
 
 void Player::Move(float fElapsedTime)

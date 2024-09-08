@@ -2,6 +2,7 @@
 #include "olcPixelGameEngine.h"
 #include "TVector2D.h"
 #include "TArray.h"
+class Sythe;
 class Map;
 class Player;
 class Enemy;
@@ -49,7 +50,6 @@ public:
 	bool NewLevelFlag;
 
 	int Level;
-
 private:
 	int ActorIndex;
 	bool bEnemyKilled;

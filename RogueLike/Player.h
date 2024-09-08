@@ -2,7 +2,7 @@
 #include "Character.h"
 #include <memory>
 
-
+class Sythe;
 class Player : public Character
 {
 public:
@@ -25,6 +25,8 @@ public:
 
 	bool GetAttacking();
 	void SetAttacking(bool InIsAttacking);
+
+	int SytheHealth;
 
 
 	bool FacingLeft;

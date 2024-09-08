@@ -176,7 +176,7 @@ void Dungeon3::InitDungeon(World* world)
 	Dungeon3Actors[18] = new Wood(17, 9);
 	Dungeon3Actors[19] = new Wood(18, 9);
 	Dungeon3Actors[20] = new Key(8, 9);
-	Dungeon3Actors[21] = new DoorToStart(0, 1);
+	Dungeon3Actors[21] = new DoorToStart(0, 18);
 
 
 	for (size_t D1Actors = 0; D1Actors < 22; D1Actors++)

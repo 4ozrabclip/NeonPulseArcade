@@ -38,8 +38,17 @@ public:
 	}
 	void RemoveElement(int Index)  //Need to move everything across
 	{
-		delete Data[Index];
-		Size--;
+		//if (!IsValidIndex(Index))
+		//{
+		//	throw std::out_of_range("Index out of range");
+		//}
+
+		for (int i = Index; i < Size - 1; ++i)
+		{
+			Data[i] = Data[i + 1];
+		}
+		//delete Data[Index];
+		--Size;
 	}
 	bool Contains(T& Element)
 	{

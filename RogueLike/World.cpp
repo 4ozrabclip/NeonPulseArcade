@@ -33,6 +33,7 @@ World::~World()
 	size_t ArraySize = Actors.Num();
 	for (ActorIndex = 0; ActorIndex < ArraySize; ++ActorIndex)
 	{
+		delete Actors.GetElement(ActorIndex);
 		Actors.RemoveElement(ActorIndex);
 	}
 	delete PlayerPtr;
@@ -85,14 +86,12 @@ bool World::OnUserUpdate(float fElapsedTime)
 	Clear(ClearPixel);
 	SetPixelMode(olc::Pixel::MASK);
 
-
 	if (NewLevelFlag)
 	{
 		Dungeons.GetElement(Level)->InitDungeon(Instance);
 		NewLevelFlag = false;
 	}
 	Dungeons.GetElement(Level)->Update(Instance, fElapsedTime);
-
 	for (ActorIndex = 0; ActorIndex < ArraySize; ++ActorIndex)
 	{
 		Actors.GetElement(ActorIndex)->Update(Instance, fElapsedTime);
@@ -100,11 +99,11 @@ bool World::OnUserUpdate(float fElapsedTime)
 
 	PlayerPtr->Update(Instance, fElapsedTime);
 	
-	//if (bEnemyKilled)
-	//{
-	//	ClearDeadActors();
-	//	bEnemyKilled = false;
-	//}
+	if (bEnemyKilled)
+	{
+		ClearDeadActors();
+		bEnemyKilled = false;
+	}
 
 	if (EndLevelFLag)
 	{

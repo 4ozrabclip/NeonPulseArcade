@@ -16,7 +16,7 @@ Enemy::Enemy(int x, int y, Player* InPlayerPtr)
     AnimSeq.NumberOfFrames = 2;
     AnimSeq.SpriteSize = World::Instance->TileSize;
     AnimSeq.AnimationDuration = 1.0f;
-
+    EnemyHealth = 1000;
     PlayerPtr = InPlayerPtr;
 
     AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::LOOP_FOREVER, AnimSeq);
@@ -27,12 +27,12 @@ Enemy::~Enemy()
 void Enemy::Update(World* world, float fElapsedTime)
 {
     //olc::vi2d position(Pos.coords.x, Pos.coords.y);
-
     fEnemy_ElapsedTime += fElapsedTime;
     Move(fElapsedTime);
     Draw(world, fElapsedTime);
     ReceivePain();
-    std::cout << "Actor Index: " << World::Instance->GetActorIndex() << std::endl;
+    //std::cout << "Actor Index: " << World::Instance->GetActorIndex() << std::endl;
+
     BorderStopper({ 220,220 }, { 10, 10 });
 }
 void Enemy::Move(float fElapsedTime)
@@ -64,19 +64,26 @@ void Enemy::Move(float fElapsedTime)
 void Enemy::ReceivePain()
 {
     int Index;
+
     if (PlayerPtr->GetWeapon() && RectangleCollision(PlayerPtr->Pos.coords))
     {
         PlayerPtr->SetAttacking(true);
+        //PlayerPtr->SytheHealth--;
         Index = World::Instance->GetActorIndex();
-        World::Instance->EnemyKilled(true, Index);
+        EnemyHealth--;
+        std::cout << "Enemy [" << this->GetIndex() << "] Health: " << EnemyHealth << std::endl;
+        if (EnemyHealth <= 0)
+        {
+            World::Instance->EnemyKilled(true, Index);
+        }
 
-        //World::Instance->Actors.RemoveElement(Index);
         World::Instance->DrawRect(olc::vf2d(Pos.coords.x, Pos.coords.y), AnimSeq.SpriteSize, olc::RED);
     }
     else {
         PlayerPtr->SetAttacking(false);
     }
 }
+
 
 bool Enemy::HasCollided()
 {
@@ -86,12 +93,16 @@ bool Enemy::HasCollided()
     float ItemX = this->GetXY().x;
     float ItemY = this->GetXY().y;
 
-    //olc::vi2d PlayerPos = {PlayerX, PlayerY};
 
     float DeltaX = PlayerX - ItemX;
     float DeltaY = PlayerY - ItemY;
     float DistanceSquared = DeltaX * DeltaX + DeltaY * DeltaY;
 
     return DistanceSquared <= 6;
+}
+
+void Enemy::SetHealth(int InHealth)
+{
+    EnemyHealth = InHealth;
 }
 

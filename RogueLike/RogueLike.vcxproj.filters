@@ -63,9 +63,6 @@
     <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files\Actors\Environment</Filter>
-    </ClCompile>
     <ClCompile Include="AnimatedSprite.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
@@ -155,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="DoorToStart.cpp">
       <Filter>Source Files\Actors\Environment\Doors</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\Actors\Environment\Dungeons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
