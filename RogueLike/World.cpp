@@ -9,6 +9,7 @@
 #include "Dungeon3.h"
 #include "YtcDungeon1.h"
 #include "ApaDungeon1.h"
+#include "EndScreen.h"
 #include <windows.h>
 #include <stdlib.h>
 
@@ -60,13 +61,14 @@ bool World::OnUserCreate()
 {
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
 	PlayerPtr = new Player(20, 20);
-	Map** DungeonPtrs = new Map * [6];
+	Map** DungeonPtrs = new Map * [7];
 	DungeonPtrs[0] = new StartDungeon();
 	DungeonPtrs[1] = new Dungeon2();
 	DungeonPtrs[2] = new Dungeon3();
 	DungeonPtrs[3] = new Dungeon3();
 	DungeonPtrs[4] = new YtcDungeon1();
 	DungeonPtrs[5] = new ApaDungeon1();
+	DungeonPtrs[6] = new EndScreen();
 	
 	Dungeons.AddElement(DungeonPtrs[0]);
 	Dungeons.AddElement(DungeonPtrs[1]);
@@ -74,6 +76,7 @@ bool World::OnUserCreate()
 	Dungeons.AddElement(DungeonPtrs[3]);
 	Dungeons.AddElement(DungeonPtrs[4]);
 	Dungeons.AddElement(DungeonPtrs[5]);
+	Dungeons.AddElement(DungeonPtrs[6]);
 
 	delete[] DungeonPtrs;
 	NewLevelFlag = true;

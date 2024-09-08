@@ -7,11 +7,14 @@
 #include "Door.h"
 #include "Enemy.h"
 #include "Rabclip.h"
+#include "Brick.h"
 #include "Sythe.h"
 #include "LockedGate.h"
 #include "LockedGateRight.h"
 #include "Key.h"
 #include "DoorToStart.h"
+#include "SecretLockedGate.h"
+#include "SecretLockedGateRight.h"
 Dungeon3::Dungeon3()
 {
 	MapLayout = std::make_unique<int[]>(400);
@@ -84,7 +87,7 @@ void Dungeon3::InitDungeon(World* world)
 	//Static Init-------------------------------------------------------------------
 	MapLayout = std::make_unique<int[]>(400);
 	int D1Map[400] = {
-		5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 , 5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 ,
+		5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 5  , 5 , 5 , 5  ,5 , 5 , 5 , 5 , 5 , 5 , 0  , 5 ,
 		5 , 0 , 0,  7,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
 		5 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  0,  0,  0,  0,  0 ,  5 ,
@@ -153,7 +156,7 @@ void Dungeon3::InitDungeon(World* world)
 
 	//Static Init Fin---------------------------------------------------------------
 	
-	Actor** Dungeon3Actors = new Actor * [22];
+	Actor** Dungeon3Actors = new Actor * [32];
 
 	Dungeon3Actors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
 	Dungeon3Actors[1] = new Enemy(120, 100, World::Instance->PlayerPtr);
@@ -169,17 +172,28 @@ void Dungeon3::InitDungeon(World* world)
 	Dungeon3Actors[11] = new Wood(13, 9);
 	Dungeon3Actors[12] = new Wood(14, 9);
 	Dungeon3Actors[13] = new Door(19, 7);
-	Dungeon3Actors[14] = new Sythe(5, 8);
+	Dungeon3Actors[14] = new Sythe(17, 16);
 	Dungeon3Actors[15] = new Rabclip(10, 1);
-	Dungeon3Actors[16] = new LockedGate(15, 9);
-	Dungeon3Actors[17] = new LockedGateRight(16, 9);
+	Dungeon3Actors[16] = new SecretLockedGate(15, 9);
+	Dungeon3Actors[17] = new SecretLockedGateRight(16, 9);
 	Dungeon3Actors[18] = new Wood(17, 9);
 	Dungeon3Actors[19] = new Wood(18, 9);
-	Dungeon3Actors[20] = new Key(8, 9);
+	Dungeon3Actors[20] = new Pill(17, 2);
 	Dungeon3Actors[21] = new DoorToStart(0, 18);
+	Dungeon3Actors[22] = new Brick(12, 8);
+	Dungeon3Actors[23] = new Brick(11, 8);
+	Dungeon3Actors[24] = new Brick(10, 8);
+	Dungeon3Actors[25] = new Brick(9, 8);
+	Dungeon3Actors[26] = new Brick(8, 8);
+	Dungeon3Actors[27] = new Brick(7, 8);
+	Dungeon3Actors[28] = new Brick(1, 8);
+	Dungeon3Actors[29] = new Brick(2, 8);
+	Dungeon3Actors[30] = new Brick(3, 8);
+	Dungeon3Actors[31] = new Brick(4, 8);
 
 
-	for (size_t D1Actors = 0; D1Actors < 22; D1Actors++)
+
+	for (size_t D1Actors = 0; D1Actors < 32; D1Actors++)
 	{
 		world->Actors.AddElement(Dungeon3Actors[D1Actors]);
 	}

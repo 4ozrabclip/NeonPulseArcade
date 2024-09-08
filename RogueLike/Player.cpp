@@ -144,3 +144,13 @@ void Player::SetAttacking(bool InIsAttacking)
 {
     IsAttacking = InIsAttacking;
 }
+
+void Player::SetHasSecretKey(bool InbHasSecretKey)
+{
+    bHasSecretKey = InbHasSecretKey;
+}
+
+bool Player::GetHasSecretKey()
+{
+    return bHasSecretKey;
+}

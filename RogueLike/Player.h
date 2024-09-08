@@ -27,7 +27,8 @@ public:
 	void SetAttacking(bool InIsAttacking);
 
 	int SytheHealth;
-
+	void SetHasSecretKey(bool InbHasSecretKey);
+	bool GetHasSecretKey();
 
 	bool FacingLeft;
 protected:
@@ -35,6 +36,7 @@ protected:
 	MoveDirection Direction;
 private:
 	bool IsAttacking;
+	bool bHasSecretKey;
 	bool bHasKey;
 	int MoveSpeed;
 	bool HoldingWeapon;

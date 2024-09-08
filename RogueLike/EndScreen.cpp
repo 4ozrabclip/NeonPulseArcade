@@ -1,4 +1,4 @@
-#include "StartDungeon.h"
+#include "EndScreen.h"
 #include "World.h"
 #include "Wood.h"
 #include "AnimatedSprite.h"
@@ -8,11 +8,11 @@
 #include "DoorToApa.h"
 #include "Enemy.h"
 #include "Sythe.h"
-StartDungeon::StartDungeon()
+EndScreen::EndScreen()
 {
 	MapLayout = std::make_unique<int[]>(400);
 }
-void StartDungeon::DrawRoom(World* world)
+void EndScreen::DrawRoom(World* world)
 {
 	FAnimSequence BrickSprite;
 	BrickSprite.NumberOfFrames = 2;
@@ -58,14 +58,14 @@ void StartDungeon::DrawRoom(World* world)
 	AnimatedSpritePtr = std::make_shared<AnimatedSprite>(Tileset, EAnimationType::STILL, DeskRightSprite);
 	Draw(world, 0);
 
-	World::Instance->DrawStringDecal(olc::vi2d(50, 62), "NeonPulse: Arcade", olc::WHITE);
+	World::Instance->DrawStringDecal(olc::vi2d(50, 62), "YOU WIN!", olc::WHITE);
 }
-void StartDungeon::SetMap(int map[])
+void EndScreen::SetMap(int map[])
 {
 	std::copy(map, map + 400, Map::MapLayout.get());
 }
 
-void StartDungeon::InitDungeon(World* world)
+void EndScreen::InitDungeon(World* world)
 {
 	//Static Init-------------------------------------------------------------------
 	MapLayout = std::make_unique<int[]>(400);
@@ -138,29 +138,7 @@ void StartDungeon::InitDungeon(World* world)
 	Draw(world, 0);*/
 
 	//Static Init Fin---------------------------------------------------------------
-	Actor** StartDungeonActors = new Actor * [15];
 
-	StartDungeonActors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
-	StartDungeonActors[1] = new DoorToApa(0, 14);
-	StartDungeonActors[2] = new DoorToYtc(19, 12);
-	StartDungeonActors[3] = new Wood(11, 14);
-	StartDungeonActors[4] = new Wood(11, 15);
-	StartDungeonActors[5] = new Wood(11, 16);
-	StartDungeonActors[6] = new Wood(11, 17);
-	StartDungeonActors[7] = new Wood(11, 18);
-	StartDungeonActors[8] = new Wood(12, 14);
-	StartDungeonActors[9] = new Wood(13, 14);
-	StartDungeonActors[10] = new Wood(16, 14);
-	StartDungeonActors[11] = new Wood(17, 14);
-	StartDungeonActors[12] = new Wood(18, 14);
-	StartDungeonActors[13] = new Door(19, 17);
-	StartDungeonActors[14] = new Sythe(16,5);
-
-	for (size_t D1Actors = 0; D1Actors < 15; D1Actors++)
-	{
-		world->Actors.AddElement(StartDungeonActors[D1Actors]);
-	}
-	delete[] StartDungeonActors;
 	PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
 
 	//DrawRoom(world);

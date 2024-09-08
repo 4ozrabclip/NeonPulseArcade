@@ -117,6 +117,22 @@ olc::vi2d Actor::SpritePosition(InitialSprite sprite) const
     case FERG_DOORGUARD:
         return olc::vi2d(4, 5)
             * World::Instance->TileSize;
+    case PALM_TREE:
+        return olc::vi2d(13, 4)
+            * World::Instance->TileSize;
+    case SECRETKEY:
+        return olc::vi2d(15, 3)
+            * World::Instance->TileSize;
+    case SECRET_GATE_LEFT:
+        return olc::vi2d(6, 2)
+            * World::Instance->TileSize;
+    case SECRET_GATE_RIGHT:
+        return olc::vi2d(7, 2)
+            * World::Instance->TileSize;
+    case FINAL_DOOR:
+        return olc::vi2d(4, 1)
+            * World::Instance->TileSize;
+
     default:
         return olc::vi2d(-1, -1); 
     }
