@@ -5,6 +5,7 @@
 #include <cmath>
 #include "Player.h"
 #include "Actor.h"
+#include "Sythe.h"
 
 Enemy::Enemy(int x, int y, Player* InPlayerPtr)
 {
@@ -65,11 +66,15 @@ void Enemy::ReceivePain()
     int Index;
     if (PlayerPtr->GetWeapon() && RectangleCollision(PlayerPtr->Pos.coords))
     {
+        PlayerPtr->SetAttacking(true);
         Index = World::Instance->GetActorIndex();
         World::Instance->EnemyKilled(true, Index);
 
         //World::Instance->Actors.RemoveElement(Index);
         World::Instance->DrawRect(olc::vf2d(Pos.coords.x, Pos.coords.y), AnimSeq.SpriteSize, olc::RED);
+    }
+    else {
+        PlayerPtr->SetAttacking(false);
     }
 }
 

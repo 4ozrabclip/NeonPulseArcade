@@ -23,12 +23,16 @@ public:
 	bool GetHasKey();
 	void SetHasKey(bool InbHasKey);
 
+	bool GetAttacking();
+	void SetAttacking(bool InIsAttacking);
+
 
 	bool FacingLeft;
 protected:
 	float fPlayer_ElapsedTime;
 	MoveDirection Direction;
 private:
+	bool IsAttacking;
 	bool bHasKey;
 	int MoveSpeed;
 	bool HoldingWeapon;

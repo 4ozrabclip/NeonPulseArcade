@@ -11,6 +11,7 @@
 #include "LockedGate.h"
 #include "LockedGateRight.h"
 #include "Key.h"
+#include "DoorToStart.h"
 Dungeon3::Dungeon3()
 {
 	MapLayout = std::make_unique<int[]>(400);
@@ -152,7 +153,7 @@ void Dungeon3::InitDungeon(World* world)
 
 	//Static Init Fin---------------------------------------------------------------
 	
-	Actor** Dungeon3Actors = new Actor * [21];
+	Actor** Dungeon3Actors = new Actor * [22];
 
 	Dungeon3Actors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
 	Dungeon3Actors[1] = new Enemy(120, 100, World::Instance->PlayerPtr);
@@ -175,9 +176,10 @@ void Dungeon3::InitDungeon(World* world)
 	Dungeon3Actors[18] = new Wood(17, 9);
 	Dungeon3Actors[19] = new Wood(18, 9);
 	Dungeon3Actors[20] = new Key(8, 9);
+	Dungeon3Actors[21] = new DoorToStart(0, 1);
 
 
-	for (size_t D1Actors = 0; D1Actors < 21; D1Actors++)
+	for (size_t D1Actors = 0; D1Actors < 22; D1Actors++)
 	{
 		world->Actors.AddElement(Dungeon3Actors[D1Actors]);
 	}

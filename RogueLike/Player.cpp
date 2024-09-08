@@ -128,3 +128,13 @@ void Player::SetHasKey(bool InbHasKey)
 {
     bHasKey = InbHasKey;
 }
+
+bool Player::GetAttacking()
+{
+    return IsAttacking;
+}
+
+void Player::SetAttacking(bool InIsAttacking)
+{
+    IsAttacking = InIsAttacking;
+}

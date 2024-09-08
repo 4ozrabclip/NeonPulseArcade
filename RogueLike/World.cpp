@@ -4,10 +4,11 @@
 #include "Map.h"
 #include "Wood.h"
 #include "AnimatedSprite.h"
-#include "Dungeon1.h"
+#include "StartDungeon.h"
 #include "Dungeon2.h"
 #include "Dungeon3.h"
-
+#include "YtcDungeon1.h"
+#include "ApaDungeon1.h"
 #include <windows.h>
 #include <stdlib.h>
 
@@ -58,16 +59,20 @@ bool World::OnUserCreate()
 {
 	Tileset = std::make_shared<olc::Sprite>("tileset.png");
 	PlayerPtr = new Player(20, 20);
-	Map** DungeonPtrs = new Map * [4];
-	DungeonPtrs[0] = new Dungeon1();
+	Map** DungeonPtrs = new Map * [6];
+	DungeonPtrs[0] = new StartDungeon();
 	DungeonPtrs[1] = new Dungeon2();
 	DungeonPtrs[2] = new Dungeon3();
 	DungeonPtrs[3] = new Dungeon3();
+	DungeonPtrs[4] = new YtcDungeon1();
+	DungeonPtrs[5] = new ApaDungeon1();
 	
 	Dungeons.AddElement(DungeonPtrs[0]);
 	Dungeons.AddElement(DungeonPtrs[1]);
 	Dungeons.AddElement(DungeonPtrs[2]);
 	Dungeons.AddElement(DungeonPtrs[3]);
+	Dungeons.AddElement(DungeonPtrs[4]);
+	Dungeons.AddElement(DungeonPtrs[5]);
 
 	delete[] DungeonPtrs;
 	NewLevelFlag = true;
@@ -79,6 +84,7 @@ bool World::OnUserUpdate(float fElapsedTime)
 	const olc::Pixel ClearPixel;
 	Clear(ClearPixel);
 	SetPixelMode(olc::Pixel::MASK);
+
 
 	if (NewLevelFlag)
 	{
@@ -135,6 +141,10 @@ void World::EnemyKilled(bool InbEnemyKilled, int InDeadEnemyIndex)
 {
 	bEnemyKilled = InbEnemyKilled;
 	DeadEnemyIndex = InDeadEnemyIndex;
+}
+
+void World::DrawUIText(olc::vi2d pos, std::string text)
+{
 }
 
 int World::GetActorIndex()

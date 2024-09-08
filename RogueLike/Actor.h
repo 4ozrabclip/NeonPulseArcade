@@ -36,7 +36,7 @@ enum InitialSprite {
 	LOCKED_GATE_RIGHT,
 	OPEN_GATE_LEFT,
 	OPEN_GATE_RIGHT,
-	KEY
+	KEY,
 };
 struct FCoords {
 	TVector2D<float> coords;

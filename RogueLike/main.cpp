@@ -2,7 +2,7 @@
 #include "World.h"
 
 constexpr int SCREEN_WIDTH = 240;
-constexpr int SCREEN_HEIGHT = 240;
+constexpr int SCREEN_HEIGHT = 265;
 constexpr int PIXEL_SIZE = 4;
 int main()
 {

@@ -43,6 +43,18 @@
     <Filter Include="Header Files\Actors\Environment">
       <UniqueIdentifier>{94663bb5-6a4c-4a0f-8388-8b51663a96d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Actors\Environment\Dungeons">
+      <UniqueIdentifier>{d046b7b2-563c-4fc4-801c-76fda6fb3b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actors\Environment\Dungeons">
+      <UniqueIdentifier>{fc96490f-e956-4c25-85c3-70391d397460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actors\Environment\Doors">
+      <UniqueIdentifier>{41e99f5e-aa9b-49dd-9b5f-2d34be2bdffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Actors\Environment\Door">
+      <UniqueIdentifier>{abb8029d-cea2-4857-b5b6-b4c12f101472}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,29 +90,14 @@
     <ClCompile Include="Wood.cpp">
       <Filter>Source Files\Actors\Environment</Filter>
     </ClCompile>
-    <ClCompile Include="Dungeon1.cpp">
-      <Filter>Source Files\Actors\Environment</Filter>
-    </ClCompile>
     <ClCompile Include="Pill.cpp">
       <Filter>Source Files\Actors\Items</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Source Files\Actors\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Door.cpp">
-      <Filter>Source Files\Actors\Environment</Filter>
-    </ClCompile>
     <ClCompile Include="Actor.cpp">
       <Filter>Source Files\Actors</Filter>
-    </ClCompile>
-    <ClCompile Include="Dungeon2.cpp">
-      <Filter>Source Files\Actors\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="Dungeon3.cpp">
-      <Filter>Source Files\Actors\Environment</Filter>
-    </ClCompile>
-    <ClCompile Include="Door2.cpp">
-      <Filter>Source Files\Actors\Environment</Filter>
     </ClCompile>
     <ClCompile Include="Rabclip.cpp">
       <Filter>Source Files\Actors\Characters</Filter>
@@ -120,8 +117,44 @@
     <ClCompile Include="Key.cpp">
       <Filter>Source Files\Actors\Items</Filter>
     </ClCompile>
+    <ClCompile Include="YtcDungeon1.cpp">
+      <Filter>Source Files\Actors\Environment\Dungeons</Filter>
+    </ClCompile>
+    <ClCompile Include="StartDungeon.cpp">
+      <Filter>Source Files\Actors\Environment\Dungeons</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon2.cpp">
+      <Filter>Source Files\Actors\Environment\Dungeons</Filter>
+    </ClCompile>
+    <ClCompile Include="Dungeon3.cpp">
+      <Filter>Source Files\Actors\Environment\Dungeons</Filter>
+    </ClCompile>
     <ClCompile Include="Door3.cpp">
-      <Filter>Source Files\Actors\Environment</Filter>
+      <Filter>Source Files\Actors\Environment\Doors</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Source Files\Actors\Environment\Doors</Filter>
+    </ClCompile>
+    <ClCompile Include="Door2.cpp">
+      <Filter>Source Files\Actors\Environment\Doors</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorToYtc.cpp">
+      <Filter>Source Files\Actors\Environment\Doors</Filter>
+    </ClCompile>
+    <ClCompile Include="Ytc.cpp">
+      <Filter>Source Files\Actors\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="ApaDungeon1.cpp">
+      <Filter>Source Files\Actors\Environment\Dungeons</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorToApa.cpp">
+      <Filter>Source Files\Actors\Environment\Doors</Filter>
+    </ClCompile>
+    <ClCompile Include="Apathetic.cpp">
+      <Filter>Source Files\Actors\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorToStart.cpp">
+      <Filter>Source Files\Actors\Environment\Doors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,29 +185,14 @@
     <ClInclude Include="Wood.h">
       <Filter>Header Files\Actors\Environment</Filter>
     </ClInclude>
-    <ClInclude Include="Dungeon1.h">
-      <Filter>Header Files\Actors\Environment</Filter>
-    </ClInclude>
     <ClInclude Include="Pill.h">
       <Filter>Header Files\Actors\Items</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Header Files\Actors\Items</Filter>
     </ClInclude>
-    <ClInclude Include="Door.h">
-      <Filter>Header Files\Actors\Environment</Filter>
-    </ClInclude>
     <ClInclude Include="Actor.h">
       <Filter>Header Files\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="Dungeon2.h">
-      <Filter>Header Files\Actors\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="Dungeon3.h">
-      <Filter>Header Files\Actors\Environment</Filter>
-    </ClInclude>
-    <ClInclude Include="Door2.h">
-      <Filter>Header Files\Actors\Environment</Filter>
     </ClInclude>
     <ClInclude Include="Rabclip.h">
       <Filter>Header Files\Actors\Characters</Filter>
@@ -194,8 +212,44 @@
     <ClInclude Include="Key.h">
       <Filter>Header Files\Actors\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Dungeon3.h">
+      <Filter>Header Files\Actors\Environment\Dungeons</Filter>
+    </ClInclude>
+    <ClInclude Include="Dungeon2.h">
+      <Filter>Header Files\Actors\Environment\Dungeons</Filter>
+    </ClInclude>
+    <ClInclude Include="StartDungeon.h">
+      <Filter>Header Files\Actors\Environment\Dungeons</Filter>
+    </ClInclude>
+    <ClInclude Include="YtcDungeon1.h">
+      <Filter>Header Files\Actors\Environment\Dungeons</Filter>
+    </ClInclude>
     <ClInclude Include="Door3.h">
-      <Filter>Header Files\Actors\Environment</Filter>
+      <Filter>Header Files\Actors\Environment\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Header Files\Actors\Environment\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="Door2.h">
+      <Filter>Header Files\Actors\Environment\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorToYtc.h">
+      <Filter>Header Files\Actors\Environment\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="Ytc.h">
+      <Filter>Header Files\Actors\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="ApaDungeon1.h">
+      <Filter>Header Files\Actors\Environment\Dungeons</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorToApa.h">
+      <Filter>Header Files\Actors\Environment\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="Apathetic.h">
+      <Filter>Header Files\Actors\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorToStart.h">
+      <Filter>Header Files\Actors\Environment\Door</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

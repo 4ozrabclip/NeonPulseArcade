@@ -1,15 +1,17 @@
-#include "Dungeon1.h"
+#include "StartDungeon.h"
 #include "World.h"
 #include "Wood.h"
 #include "AnimatedSprite.h"
 #include "Pill.h"
 #include "Door.h"
+#include "DoorToYtc.h"
+#include "DoorToApa.h"
 #include "Enemy.h"
-Dungeon1::Dungeon1()
+StartDungeon::StartDungeon()
 {
 	MapLayout = std::make_unique<int[]>(400);
 }
-void Dungeon1::DrawRoom(World* world)
+void StartDungeon::DrawRoom(World* world)
 {
 	FAnimSequence BrickSprite;
 	BrickSprite.NumberOfFrames = 2;
@@ -57,12 +59,12 @@ void Dungeon1::DrawRoom(World* world)
 
 
 }
-void Dungeon1::SetMap(int map[])
+void StartDungeon::SetMap(int map[])
 {
 	std::copy(map, map + 400, Map::MapLayout.get());
 }
 
-void Dungeon1::InitDungeon(World* world)
+void StartDungeon::InitDungeon(World* world)
 {
 	//Static Init-------------------------------------------------------------------
 	MapLayout = std::make_unique<int[]>(400);
@@ -86,7 +88,7 @@ void Dungeon1::InitDungeon(World* world)
 		1 , 7 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  1 ,
 		1 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  1 ,
 		1 , 0 , 0,  0,  0,  0,  0,  0,  0 ,  0,  0,  0 , 0,  0,  5,  0,  0,  0,  0 ,  1 ,
-		1 , 1  ,1 , 1 , 1 , 1 , 1 , 1 , 1  , 1 , 1 , 1  ,1 , 1 , 1 , 1 , 1 , 0 , 1  , 1 ,
+		1 , 1  ,1 , 1 , 1 , 1 , 1 , 1 , 1  , 1 , 1 , 1  ,0 , 1 , 1 , 1 , 1 , 0 , 1  , 1 ,
 	};
 
 	SetMap(D1Map);
@@ -135,29 +137,29 @@ void Dungeon1::InitDungeon(World* world)
 	Draw(world, 0);*/
 
 	//Static Init Fin---------------------------------------------------------------
-	Actor** Dungeon1Actors = new Actor * [15];
+	Actor** StartDungeonActors = new Actor * [15];
 
-	Dungeon1Actors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
-	Dungeon1Actors[1] = new Enemy(120, 100, World::Instance->PlayerPtr);
-	Dungeon1Actors[2] = new Enemy(220, 100, World::Instance->PlayerPtr);
-	Dungeon1Actors[3] = new Wood(11, 14);
-	Dungeon1Actors[4] = new Wood(11, 15);
-	Dungeon1Actors[5] = new Wood(11, 16);
-	Dungeon1Actors[6] = new Wood(11, 17);
-	Dungeon1Actors[7] = new Wood(11, 18);
-	Dungeon1Actors[8] = new Wood(12, 14);
-	Dungeon1Actors[9] = new Wood(13, 14);
-	Dungeon1Actors[10] = new Wood(16, 14);
-	Dungeon1Actors[11] = new Wood(17, 14);
-	Dungeon1Actors[12] = new Wood(18, 14);
-	Dungeon1Actors[13] = new Door(19, 17);
-	Dungeon1Actors[14] = new Pill(5, 8);
+	StartDungeonActors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
+	StartDungeonActors[1] = new DoorToApa(19, 4);
+	StartDungeonActors[2] = new DoorToYtc(19, 12);
+	StartDungeonActors[3] = new Wood(11, 14);
+	StartDungeonActors[4] = new Wood(11, 15);
+	StartDungeonActors[5] = new Wood(11, 16);
+	StartDungeonActors[6] = new Wood(11, 17);
+	StartDungeonActors[7] = new Wood(11, 18);
+	StartDungeonActors[8] = new Wood(12, 14);
+	StartDungeonActors[9] = new Wood(13, 14);
+	StartDungeonActors[10] = new Wood(16, 14);
+	StartDungeonActors[11] = new Wood(17, 14);
+	StartDungeonActors[12] = new Wood(18, 14);
+	StartDungeonActors[13] = new Door(19, 17);
+	StartDungeonActors[14] = new Pill(5, 8);
 
 	for (size_t D1Actors = 0; D1Actors < 15; D1Actors++)
 	{
-		world->Actors.AddElement(Dungeon1Actors[D1Actors]);
+		world->Actors.AddElement(StartDungeonActors[D1Actors]);
 	}
-	delete[] Dungeon1Actors;
+	delete[] StartDungeonActors;
 	PlaySound(TEXT("fucked1(tat2).wav"), 0, SND_FILENAME | SND_ASYNC);
 
 	//DrawRoom(world);

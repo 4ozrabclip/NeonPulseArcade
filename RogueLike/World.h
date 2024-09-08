@@ -5,8 +5,9 @@
 class Map;
 class Player;
 class Enemy;
-class Dungeon1;
+class StartDungeon;
 class Actor;
+class YtcDungeon1;
 
 struct FMapCoordinates {
 	TVector2D<float> coords;
@@ -41,6 +42,8 @@ public:
 
 	void EnemyKilled(bool bEnemyKilled, int DeadEnemyIndex);
 
+	void DrawUIText(olc::vi2d pos, std::string text);
+
 	int GetActorIndex();
 
 	bool NewLevelFlag;
@@ -57,5 +60,6 @@ private:
 	//Enemy** EnemyPtrs = new Enemy * [EnemyMax];
 	bool EndLevelFLag;
 
-	Dungeon1* DungeonPtr;
+
+	StartDungeon* DungeonPtr;
 };

@@ -1,20 +1,23 @@
-#include "Dungeon2.h"
+#include "YtcDungeon1.h"
 #include "World.h"
 #include "Wood.h"
 #include "AnimatedSprite.h"
 #include "Pill.h"
-#include "Mushroom.h"
 #include "Door.h"
-#include "Door2.h"
 #include "Enemy.h"
+#include "Ytc.h"
+#include "Sythe.h"
+#include "LockedGate.h"
+#include "LockedGateRight.h"
+#include "Key.h"
 #include "DoorToStart.h"
 
-Dungeon2::Dungeon2()
+YtcDungeon1::YtcDungeon1()
 {
 
 }
 
-void Dungeon2::DrawRoom(World* world)
+void YtcDungeon1::DrawRoom(World* world)
 {
 	FAnimSequence WoodSprite;
 	WhichSpriteInt = WOOD;
@@ -44,12 +47,12 @@ void Dungeon2::DrawRoom(World* world)
 	Draw(world, 0);
 }
 
-void Dungeon2::SetMap(int map[])
+void YtcDungeon1::SetMap(int map[])
 {
 	std::copy(map, map + 400, MapLayout.get());
 }
 
-void Dungeon2::InitDungeon(World* world)
+void YtcDungeon1::InitDungeon(World* world)
 {
 	//Static Init ------------------------------------------------------------------------------
 	MapLayout = std::make_unique<int[]>(400);
@@ -96,30 +99,37 @@ void Dungeon2::InitDungeon(World* world)
 	Draw(world, 0);*/
 	//Static Init Fin -----------------------------------------------------------------------------------------
 
-	Actor** Dungeon2Actors = new Actor * [14];
+	Actor** YtcDungeon1Actors = new Actor * [21];
 
-	Dungeon2Actors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
-	Dungeon2Actors[1] = new Enemy(120, 100, World::Instance->PlayerPtr);
-	Dungeon2Actors[2] = new Enemy(220, 100, World::Instance->PlayerPtr);
-	Dungeon2Actors[3] = new Wood(11, 14);
-	Dungeon2Actors[4] = new Wood(11, 15);
-	Dungeon2Actors[5] = new Wood(11, 16);
-	Dungeon2Actors[6] = new Wood(11, 17);
-	Dungeon2Actors[7] = new Wood(11, 18);
-	Dungeon2Actors[8] = new Wood(11, 13);
-	Dungeon2Actors[9] = new Wood(11, 12);
-	Dungeon2Actors[10] = new Door2(0, 2);
-	Dungeon2Actors[11] = new Mushroom(8, 3);
-	Dungeon2Actors[12] = new Enemy(50, 160, World::Instance->PlayerPtr);
-	Dungeon2Actors[13] = new Enemy(70, 140, World::Instance->PlayerPtr);
+	YtcDungeon1Actors[0] = new Enemy(20, 100, World::Instance->PlayerPtr);
+	YtcDungeon1Actors[1] = new Enemy(120, 100, World::Instance->PlayerPtr);
+	YtcDungeon1Actors[2] = new Enemy(220, 100, World::Instance->PlayerPtr); 
+	YtcDungeon1Actors[3] = new Wood(13, 6);
+	YtcDungeon1Actors[4] = new Wood(14, 6);
+	YtcDungeon1Actors[5] = new Wood(15, 6);
+	YtcDungeon1Actors[6] = new Wood(16, 6);
+	YtcDungeon1Actors[7] = new Wood(17, 6);
+	YtcDungeon1Actors[8] = new Wood(18, 6);
+	YtcDungeon1Actors[9] = new Wood(13, 7);
+	YtcDungeon1Actors[10] = new Wood(13, 8);
+	YtcDungeon1Actors[11] = new Wood(13, 9);
+	YtcDungeon1Actors[12] = new Wood(14, 9);
+	YtcDungeon1Actors[13] = new DoorToStart(19, 7);
+	YtcDungeon1Actors[14] = new Sythe(5, 8);
+	YtcDungeon1Actors[15] = new Ytc(10, 2);
+	YtcDungeon1Actors[16] = new LockedGate(15, 9);
+	YtcDungeon1Actors[17] = new LockedGateRight(16, 9);
+	YtcDungeon1Actors[18] = new Wood(17, 9);
+	YtcDungeon1Actors[19] = new Wood(18, 9);
+	YtcDungeon1Actors[20] = new Key(8, 9);
 
-	for (size_t D1Actors = 0; D1Actors < 14; D1Actors++)
+
+	for (size_t D1Actors = 0; D1Actors < 21; D1Actors++)
 	{
-		world->Actors.AddElement(Dungeon2Actors[D1Actors]);
+		world->Actors.AddElement(YtcDungeon1Actors[D1Actors]);
 	}
-
-	delete[] Dungeon2Actors;
-	PlaySound(TEXT("pcdopamine.wav"), 0, SND_FILENAME | SND_ASYNC);
+	delete[] YtcDungeon1Actors;
+	//PlaySound(TEXT("pcdopamine.wav"), 0, SND_FILENAME | SND_ASYNC);
 
 	//DrawRoom(world);
 }
